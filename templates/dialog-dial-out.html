@@ -1,0 +1,102 @@
+<div class="overlay-container brand-overlay" id="dialog-dial-out" toggle>
+    <form class="overlay-content brand-secondary" style="background-color: white" name="addParticipantForm"
+          ng-submit="addParticipantForm.$valid && connection.participantAdd(uri, protocol, role, presentationUri) || hide()"
+          novalidate>
+        <i style="color:#0b93f9;cursor: pointer;font-size:34px;text-align:right;display: block;" class="iconfont" ng-click="hide();">&#xe81a;</i>
+        <div style="margin-top: -20px">
+            <div class="dialog-title" style="text-align: center" translate>IDS_PARTICIPANT_ADD</div>
+        </div>
+        <div style="overflow: hidden" class="dialog-content">
+            <!--<p class="placeholder-text" style="max-width: 500px" translate="IDS_PARTICIPANT_ADD_{{protocol}}"></p>-->
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <select style="width: 90%;outline: none height: 50px; background-color: #f7f8fa;border-radius: 25px;margin: 0 auto; display: block;" ng-model="protocol"
+                                ng-options="protocol as ('IDS_PROTOCOL_' + protocol | translate) for protocol in applicationSettings.dialOutProtocols | removeValues:connection.data.disabledProtocols"></select>
+                    </td>
+                </tr>
+                <tr style="display: block; margin-top: 10px"></tr>
+                <tr>
+                    <td>
+                        <input required type="email" autocomplete="off" autocorrect="off" autocapitalize="off"
+                               spellcheck="false" maxlength="512" size="30" style="width: 90%;height: 50px;outline: none; background-color: #f7f8fa;text-align: center;border-radius: 25px;margin: 0 auto;display: block; border-color: #ddd;" focus-input
+                               ng-attr-placeholder="{{'IDS_PARTICIPANT_ADD_TEXT' | translate}}" ng-model="uri"
+                               ng-change="checkProtocolChange(uri)" pex-no-email-validation/>
+                    </td>
+                </tr>
+                <tr style="display: block; margin-top: 10px"></tr>
+                <tr>
+                    <td>
+                        <div style="display: flex;justify-content: space-around;align-items: center" class="chooseRole">
+                        <div class="choose-host">
+                            <!--主持人-->
+                            <input class="checkbox-btn" type="radio" name="selectRole" value="host" ng-model="role" required>
+                            <span translate>IDS_ROLE_HOST</span>
+                        </div>
+                        <div class="choose-guest">
+                            <!--访客-->
+                            <input class="checkbox-btn" type="radio" name="selectRole" value="guest"  ng-model="role" required>
+                            <span translate>IDS_ROLE_GUEST</span>
+                        </div>
+                        </div>
+                        <!--<select style="width: auto; display: block; margin: 0 auto" ng-model="role"-->
+                                <!--ng-init="role = applicationSettings.defaultDialOutRole"-->
+                                <!--ng-options="value as (name | translate) for (value, name) in {guest: 'IDS_ROLE_GUEST', host: 'IDS_ROLE_HOST'}"></select>-->
+                    </td>
+                </tr>
+                <tr ng-show="protocol == 'rtmp'">
+                    <td>
+                        <label><span translate>IDS_PARTICIPANT_ADD_SEPARATE_PRESENTATION</span><input
+                                ng-model="separatePresentation" type="checkbox"/></label>
+                    </td>
+                    <td>
+                        <input ng-show="separatePresentation" type="text" autocomplete="off" autocorrect="off"
+                               autocapitalize="off" spellcheck="false" maxlength="512" size="30" style="width:auto"
+                               ng-attr-placeholder="{{'IDS_PARTICIPANT_ADD_PRESENTATION_TEXT' | translate}}"
+                               ng-model="presentationUri"/>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <div class="side-bar-list-item brand-tertiary" style="background-color: #f7f8fa;margin: 20px 0;padding: 20px 0;text-align: center" ng-if="!dialHistory.values.length">
+                <!--<div class="transparent button" style="float: left; margin-right: 16px; margin-top: -12px;">-->
+                    <!--<i class="mdi-history"></i>-->
+                <!--</div>-->
+                <div class="name" translate>
+                    IDS_HISTORY_PLACEHOLDER
+                </div>
+            </div>
+            <div style="overflow-y: auto; max-height: 250px;padding:0 5px;">
+                <div class="side-bar-list-item brand-tertiary brand-tertiary-hover"
+                     ng-repeat="item in dialHistory.values | filter:uri | orderBy:'timestamp':true"
+                     ng-click="connection.participantAdd(item.alias, item.protocol, item.role); hide()">
+                    <div class="menu" ng-click="$event.stopPropagation()">
+                        <a class="transparent button" href="" title="{{'IDS_BUTTON_EDIT' | translate}}"
+                           ng-click="($parent.uri=item.alias) && ($parent.protocol=item.protocol) && ($parent.role=item.role)">
+                            <i class="mdi-edit"></i>
+                        </a>
+                        <a class="transparent button" href="" title="{{'IDS_BUTTON_DELETE' | translate}}"
+                           ng-click="dialHistory.remove(item.alias)">
+                            <i class="mdi-delete"></i>
+                        </a>
+                    </div>
+                    <div style="color:#212121" class="participant-list-name">
+                        {{item.alias}}
+                    </div>
+                    <div class="participant-list-name-detail">
+                        <span translate>{{item.role === 'guest' ? 'IDS_ROLE_GUEST' : 'IDS_ROLE_HOST'}}</span>
+                        <span translate>({{'IDS_PROTOCOL_' + item.protocol}})</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="alert-actions" style="text-align: center">
+
+            <button type="submit" class="button square blue" style="padding: 8px 46px; border-radius: 20px">
+                <span translate>IDS_BUTTON_DISCONNECT_SURE</span>
+            </button>
+        </div>
+    </form>
+</div>

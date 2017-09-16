@@ -1,0 +1,49 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Microsoft YaHei";
+    font-size: 11pt;
+    margin: 0;
+    background: #f3f3f3;
+
+
+}
+
+.clearfix {
+    clear: both;
+}
+.fl{
+    float: left;
+}
+span {
+    display: block;
+}
+p{
+    margin: 0;
+    padding:5px 0;
+}
+
+.wrapper {
+    width: 880px;
+    height: 100px;
+    margin: 0 auto;
+    background: #ebebeb;
+}
+
+.header {
+    width: 880px;
+    height: 100px;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    /*background: url("../img/logo.png") left top no-repeat;*/
+    width: 400px;
+    height: 100px;
+    left: 0;
+    top: 0;
+}

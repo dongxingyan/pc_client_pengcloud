@@ -1,0 +1,431 @@
+.app-bar {
+    display: inline-block;
+    position: absolute;
+    top: 72%;
+    left: 25px;
+    transition-property: top;
+    transition-duration: 0.2s;
+    width: 300px;
+    z-index: 1;
+}
+
+.app-bar-container-custom {
+}
+
+.app-bar-fullscreen {
+    max-width: 100%;
+    width: auto;
+}
+
+.app-bar .avatar,
+.app-bar .menu {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    margin: 16px;
+}
+
+.app-bar .menu {
+    right: 0;
+}
+.name-container {
+    display: flex;
+    flex-direction: column;
+}
+.idle .name-container:not(:hover){
+    display: none;
+}
+.app-bar .bar-container-top{
+    width: 300px;
+    height:70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.name-container .name {
+    margin: 18px 64px 0px 72px;
+}
+
+.name-container .display-name {
+    margin: 2px 75px 0px 72px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.idle .app-bar-fullscreen {
+    /*top: -72px;*/
+    display: none;
+}
+
+.app-bar .name,
+.side-bar-status .name {
+    font-weight: bold;
+}
+
+.app-bar-fullscreen .avatar {
+    box-shadow: 1px 1px 4px -1px black;
+}
+
+.app-bar-fullscreen .name,
+.app-bar-fullscreen .button {
+    text-shadow: 1px 1px 1px black;
+}
+
+@media (max-width: 799px) {
+    .idle .app-bar {
+        top: -72px;
+    }
+    .app-bar {
+        max-width: 100%;
+        width: auto;
+    }
+    .app-bar .avatar {
+        box-shadow: 1px 1px 4px black;
+    }
+    .app-bar .name,
+    .app-bar .button {
+        text-shadow: 1px 1px 1px black;
+    }
+}
+
+@media (min-width: 800px) {}
+
+.app-bar-submenu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    /*padding-top: 40px;*/
+}
+
+.submenu-content {
+    margin: 16px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, .2);
+    border-radius: 2px;
+    overflow: auto;
+}
+
+.submenu-content .brand-tertiary-hover {
+    display: block;
+    padding: 8px 16px;
+    white-space: nowrap;
+    font: inherit;
+    color: inherit;
+    text-decoration: none;
+}
+.meeting-ctrl-list-bar{
+    display: inline-table;
+}
+.meeting-ctrl-list-bar .meeting-ctrl-list-another{
+    color:#fa5f61;
+}
+
+.sel-toolbar .meeting-toolbar-common{
+    color: #0b93f9;
+}
+
+.meeting-ctrl-list-icon{
+    height:25px;
+    text-align: center;
+    line-height: 30px;
+    background:black;
+    min-width: 616px;
+    max-width: 773px;
+    width: 100%;
+}
+.meeting-ctrl-list-container {
+    display: flex;
+    height: 70px;
+    /*margin-top: -38px;*/
+    /*margin-left: 299px;*/
+    margin:0 auto;
+    background-color: rgba(0,0,0,0.7);
+    color: #ffffff !important;
+    justify-content: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.idle .meeting-ctrl-list-container:not(:hover){
+    position: absolute;
+    top:-70px;
+}
+.idle .split-screen-list-container:not(:hover){
+    display: none;
+}
+
+.take-back-menu-bar {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.meeting-ctrl-list-bar .meeting-ctrl-list-container a {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    /*opacity: 0.6;*/
+    font-size:12px;
+}
+
+.meeting-ctrl-list-container a:hover {
+    background: #0b93f9 !important;
+    color: #ffffff;
+    opacity: 1;
+}
+
+.meeting-ctrl-list-container a i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.brand-tertiary-hover {
+    cursor: pointer;
+}
+
+.meeting-ctrl-title-a {
+    text-decoration: none;
+}
+
+.meeting-ctrl-title-a:hover {
+    text-decoration: none;
+}
+
+.meeting-ctrl-title-a div {
+    color: #fff;
+    text-decoration: none;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 1px;
+}
+
+.meeting-ctrl-menu-develop-img {
+    background: url("../img/meeting-ctrl-menu-bar/huikongzhan.png") right no-repeat;
+    width: 15px;
+    height: 100%;
+    background-size: contain;
+    display: flex;
+}
+
+.meeting-ctrl-menu-take-back-img {
+    background: url("../img/meeting-ctrl-menu-bar/huikongshou.png") left no-repeat;
+    width: 21px;
+    height: 70px;
+    background-size: contain;
+}
+
+.meeting-ctrl-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invitation-to-join-img {
+    background: url("../img/meeting-ctrl-menu-bar/jiaru.png") center no-repeat;
+    width: 21px;
+    height: 20px;
+    background-size: contain;
+}
+.delete-all{
+    display: inline-block;
+    background: url("../img/meeting-ctrl-menu-bar/delete_all.png") center no-repeat;
+    width: 21px;
+    height: 20px;
+    background-size: contain;
+}
+
+.lock-meeting-img {
+    background: url("../img/meeting-ctrl-menu-bar/suo.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+
+.unlock-meeting-img {
+    background: url("../img/meeting-ctrl-menu-bar/suo_open.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+
+.start-mute-img {
+    background: url("../img/meeting-ctrl-menu-bar/jingyin.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    display: inline-block;
+    background-size: contain;
+}
+
+.stop-mute-img {
+    display: inline-block;
+    background: url("../img/meeting-ctrl-menu-bar/yuyin.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+
+.all-hang-up-img {
+    background: url("../img/meeting-ctrl-menu-bar/guaduan.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+
+.display-nickname-img {
+    background: url("../img/meeting-ctrl-menu-bar/xianshi.png") center no-repeat;
+    width: 27px;
+    height: 30px;background-size: contain;
+
+}
+
+.undisplay-nickname-img {
+    background: url("../img/meeting-ctrl-menu-bar/buxianshinicheng.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+
+.split-screen-mode-img {
+    background: url("../img/meeting-ctrl-menu-bar/fenping.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+
+.main-screen-mode-img {
+    background: url("../img/meeting-ctrl-menu-bar/zhupingmoshi.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+
+.start-recording-img {
+    background: url("../img/meeting-ctrl-menu-bar/luzhi.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+
+.stop-recording-img {
+    background: url("../img/meeting-ctrl-menu-bar/tingzhi.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+
+.start-live-img {
+    background: url("../img/meeting-ctrl-menu-bar/zhibo.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+.disabled {
+    pointer-events: none;
+}
+
+/*底部控件图标*/
+
+/*取消静音*/
+.toolbar-mic-cancel{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/mic_off.png") center no-repeat;
+    width: 21px;
+    height: 24px;
+    background-size: contain;
+}
+
+/*开启视频*/
+.toolbar-videocam-off{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/vedio-off.png") center no-repeat;
+    width: 21px;
+    height: 24px;
+    background-size: contain;
+}
+/*共享*/
+.share-img{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/share_icon.png") center no-repeat;
+    width: 21px;
+    height: 25px;
+    background-size: contain;
+}
+/*共享文件*/
+.toolbar-share-file{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/share_file.png") center no-repeat;
+    width: 21px;
+    height: 24px;
+    background-size: contain;
+}
+
+/*参会人员*/
+.toolbar-participant{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/participant_icon.png") center no-repeat;
+    width: 21px;
+    height: 24px;
+    background-size: contain;
+}
+
+/*参会人员取消*/
+.toolbar-participant_select{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/participant_icon_select.png") center no-repeat;
+    width: 21px;
+    height: 24px;
+    background-size: contain;
+}
+
+
+/*取消举手*/
+.toolbar-hand-down{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/hand_down.png") center no-repeat;
+    width: 21px;
+    height: 24px;
+    background-size: contain;
+}
+/*取消共享*/
+.toolbar-share-off{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/share_off.png") center no-repeat;
+    width: 21px;
+    height: 25px;
+    background-size: contain;
+}
+/*取消全屏*/
+.toolbar-fullscreen-exit{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/fullScreen_exit.png") center no-repeat;
+    width: 21px;
+    height: 24px;
+    background-size: contain;
+}
+.toolbar-info{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/fullScreen_exit.png") center no-repeat;
+    width: 21px;
+    height: 24px;
+    background-size: contain;
+}
+.toolbar-call-end{
+    display: inline-block;
+    background: url("../img/toolbar-ctrl-menu/call_off.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+    background-size: contain;
+}
+
+.conference-audio-coming {
+    position: relative;
+    height: 100%;
+}

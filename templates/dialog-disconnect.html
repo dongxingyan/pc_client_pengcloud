@@ -1,0 +1,25 @@
+<div class="overlay-container brand-overlay sel-modal-popup" id="dialog-disconnect" toggle>
+    <form style="padding:5px;border-radius: 10px" class="overlay-content brand-secondary" ng-submit="hide()">
+        <div style="text-align: right">
+            <i style="color:#0b93f9;cursor: pointer" class="iconfont" ng-click="hide()">&#xe81a;</i>
+        </div>
+        <div style="text-align: center" class="dialog-title sel-dialog-disconnect-title" translate>IDS_DIALOG_DISCONNECT_TITLE</div>
+        <div class="dialog-content" style="text-align: center;margin:15px 50px;">
+            <span class="sel-modal-popup-message" translate>IDS_DIALOG_DISCONNECT_MESSAGE</span>
+            <!--<p>-->
+                <!--<label>-->
+                    <!--<input type="checkbox" ng-model="localStorage.promptDisconnect" ng-true-value="false" ng-false-value="true" class="sel-prompt-disconnect" />-->
+                    <!--<span translate>IDS_DIALOG_DISCONNECT_PROMPT</span>-->
+                <!--</label>-->
+            <!--</p>-->
+        </div>
+        <div class="alert-actions" style="text-align: center;margin-bottom:10px">
+            <!--<button type="button" class="button square sel-disconnect-button-cancel" ng-click="hide()">-->
+                <!--<span translate>IDS_BUTTON_CANCEL</span>-->
+            <!--</button>-->
+            <button type="submit" style="width:115px;height:30px;border-radius: 18px;background:#0b93f9;margin:0;padding:0" class="button square sel-disconnect-button" ng-click="disconnect(true, 'User initiated disconnect')">
+                <span translate>IDS_BUTTON_DISCONNECT_SURE</span>
+            </button>
+        </div>
+    </form>
+</div>

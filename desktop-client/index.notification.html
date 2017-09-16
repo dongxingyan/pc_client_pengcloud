@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="no-js" id="ng-app" lang="en" ng-app="pexapp" ng-controller="NotificationController">
+
+<head>
+    <base href="../">
+
+    <link href="configuration/favicon.png" rel="icon" type="image/x-icon" />
+
+    <link href="fonts/roboto/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="fonts/mdi/style.css">
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/stage.css" rel="stylesheet" />
+    <link href="css/app-bar.css" rel="stylesheet" />
+    <link href="css/side-bar.css" rel="stylesheet" />
+    <link href="css/toast.css" rel="stylesheet" />
+    <link href="css/mediastats.css" rel="stylesheet" />
+    <link href="css/dialpad.css" rel="stylesheet" />
+    <link href="css/chat.css" rel="stylesheet" />
+    <link href="css/login.css" rel="stylesheet" />
+    <link href="css/escalate-media.css" rel="stylesheet" />
+    <link href="css/file-share.css" rel="stylesheet" />
+    <link ng-href="themes/default/brand.css" rel="stylesheet" />
+    <link ng-href="{{localStorage.theme}}/brand.css" rel="stylesheet" />
+
+    <script src="desktop-client/js/logger.js"></script>
+
+    <script src="js/vendor/angular.min.js"></script>
+
+    <script src="js/vendor/angular-translate.min.js"></script>
+    <script src="js/vendor/angular-translate-loader-static-files.min.js"></script>
+
+    <script src="js/vendor/bindonce.js"></script>
+
+    <script src="js/vendor/ngStorage.min.js"></script>
+
+    <script src="js/vendor/angular-sanitize.min.js"></script>
+    <script src="js/vendor/angular-enhance-text.min.js"></script>
+
+    <script src="js/pexapp.js"></script>
+    <script src="configuration/settings.js" charset="utf-8"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/call-history-service.js"></script>
+
+    <script src="desktop-client/contextmenu.js"></script>
+
+    <script>
+        angular.module('pexapp')
+
+        .factory('globalService', function() {
+            if ('electron' in process.versions) {
+                return require('electron').remote.getGlobal('globalService');
+            } else {
+                return global.globalService;
+            }
+        })
+
+        .controller('NotificationController', function($scope, $log, globalService) {
+            $scope.globalService = globalService;
+            $scope.platform = process.platform;
+
+            $scope.getParticipantAvatarUrl = function(host, alias, token, uuid, width, height) {
+                return 'https://' + host +
+                    '/api/client/v2/conferences/' + alias +
+                    '/participants/' + uuid +
+                    '/avatar.jpg?width=' + width +
+                    '&height=' + height +
+                    '&token=' + token;
+            };
+
+            $scope.getConferenceAvatarUrl = function(host, alias) {
+                return 'https://' + host + '/api/client/v2/conferences/' + alias + '/avatar.jpg';
+            };
+
+            if ('electron' in process.versions) {
+                var ipcRenderer = require('electron').ipcRenderer;
+                ipcRenderer.on('message', function(event, message) {
+                    $log.log('Got window message', message);
+                    $scope.$apply(function() {
+                        $scope.message = message;
+                        $scope.host = message.host;
+                    });
+                })
+            } else {
+                window.addEventListener('message', function(event) {
+                    $log.log('Got window message', event.data);
+                    $scope.$apply(function() {
+                        $scope.message = event.data.message;
+                        $scope.host = event.data.message.host;
+                    });
+                });
+            }
+        });
+    </script>
+
+    <style>
+        body {
+            -webkit-user-select: none;
+            cursor: default;
+            width: 100%;
+            height: 100%;
+        }
+
+        .incoming-conference-avatar {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 24px;
+            float: left;
+            margin-right: 8px;
+        }
+
+        .incoming-participant-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        .transparent-window {
+            background-color: transparent;
+        }
+
+        .window-border {
+            padding: 8px;
+        }
+
+        .transparent-window .window-border {
+            margin: 1px 4px 4px 1px;
+            background-color: rgba(255, 255, 255, .87);
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body ng-class="platform !== 'linux' ? 'transparent-window' : ''">
+    <div class="window-border" ng-switch="message.service_type">
+        <div style="float: right">
+            <a href="" class="red button sel-join-reject" style="font-size: 24px; font-weight: normal" title="{{'IDS_BUTTON_DENY' | translate}}" ng-click="globalService.callReject(message)"><i class="mdi-call-end"></i></a>
+            <a href="" class="green button sel-join" style="font-size: 24px; font-weight: normal" title="{{'IDS_BUTTON_ACCEPT' | translate}}" ng-click="globalService.callAccept(message)"><i class="mdi-call"></i></a>
+        </div>
+        <img class="incoming-conference-avatar" ng-src="{{applicationSettings.overrideConferenceAvatar || getConferenceAvatarUrl(host, message.conference_alias)}}" onerror="this.style.display='none'" ng-switch-when="conference" />
+        <div class="avatar" ng-switch-default>
+        </div>
+        <div class="participant-list-name sel-incoming-name">{{message.remote_display_name || message.remote_alias}}</div>
+        <div class="participant-list-name-detail sel-incoming-alias">{{message.remote_alias}}</div>
+    </div>
+    <audio ng-src="{{localStorage.ringtone}}" autoplay loop ng-if="localStorage.enableRingtone && localStorage.ringtone" />
+</body>
+
+</html>

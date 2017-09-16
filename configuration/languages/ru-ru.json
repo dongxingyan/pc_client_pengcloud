@@ -1,0 +1,167 @@
+{
+    "IDS_APPLICATION_NAME": "VConnect",
+
+    "IDS_CONNECT_JOIN_PROMPT": "Алиас или URI конференции",
+    "IDS_CONNECT_URI_PROMPT": "Введите алиас или URI",
+    "IDS_CONNECT_ROLE_PROMPT": "Выберите вашу роль",
+    "IDS_CONNECT_PIN_PROMPT": "Введите пин-код конференции",
+    "IDS_CONNECT_PIN_LABEL": "пин-код",
+
+    "IDS_HISTORY_RECENT": "Недавние звонки",
+
+    "IDS_SETTINGS_TITLE": "Настройки",
+    "IDS_SETTINGS_SHOW_ADVANCED": "Показать расширенные настройки",
+    "IDS_SETTINGS_TITLE_USER": "Пользователь",
+    "IDS_SETTINGS_DISPLAY_NAME": "Ваше имя",
+    "IDS_SETTINGS_REGISTRATION": "Регистрация",
+    "IDS_SETTINGS_REGISTRATION_ALIAS": "Алиас",
+    "IDS_SETTINGS_REGISTRATION_USERNAME": "Имя пользователя",
+    "IDS_SETTINGS_REGISTRATION_PASSWORD": "Пароль",
+    "IDS_SETTINGS_REGISTRATION_PASSWORD_REMEMBER": "Повтор пароля",
+    "IDS_SETTINGS_TITLE_CONNECTION": "Подключение",
+    "IDS_SETTINGS_DEFAULT_DOMAIN": "Домен по-умолчанию",
+    "IDS_SETTINGS_SERVER_ADDRESS": "Адрес сервера",
+    "IDS_SETTINGS_TITLE_UI": "Вид",
+    "IDS_SETTINGS_DISPLAY_NAME_PLACEHOLDER": "Введите ваше имя",
+    "IDS_SETTINGS_MICROPHONE": "Микрофон",
+    "IDS_SETTINGS_MICROPHONE_DEFAULT": "Default",
+    "IDS_SETTINGS_MICROPHONE_NONE": "None",
+    "IDS_SETTINGS_CAMERA": "Камера",
+    "IDS_SETTINGS_CAMERA_DEFAULT": "Default",
+    "IDS_SETTINGS_CAMERA_NONE": "None",
+    "IDS_SETTINGS_THEME": "Тема",
+    "IDS_SETTINGS_LANGUAGE": "Язык",
+
+    "IDS_BANDWIDTH": "Скорость подключения",
+    "IDS_BANDWIDTH_AUDIO_ONLY": "Только аудио",
+    "IDS_BANDWIDTH_LOW": "Низкая скорость ({{bandwidth}}kbps)",
+    "IDS_BANDWIDTH_MEDIUM": "Средняя скорость ({{bandwidth}}kbps)",
+    "IDS_BANDWIDTH_HIGH": "Высокая скорость ({{bandwidth}}kbps)",
+    "IDS_BANDWIDTH_MAXIMUM": "Максимальная скорость ({{bandwidth}}kbps)",
+
+    "IDS_INCOMING_CALL": "Входящий вызов",
+
+    "IDS_FOOTER_COMPANY": "&copy; 2015 VConnect&reg; AS",
+    "IDS_FOOTER_COMPANY_URL": "http://www.VConnect.com",
+    "IDS_FOOTER_ABOUT": "Об этом приложении",
+
+    "IDS_PRESENTATION_FULL_MOTION": "Просмотр презентации с высокой скоростью обновления картинки",
+    "IDS_PRESENTATION_STILL_IMAGE": "Просмотр презентации с миньшей скоростью обновления картинки",
+    "IDS_PRESENTATION_ESCALATE_PROMPT": "Хотите начать просмотр HD презентации?",
+    "IDS_PRESENTATION_ESCALATE_MESSAGE_ALREDY_ACTIVE": "Вы сейчас смотрите HD презентацию. Хотите переключиться на картинки?",
+    "IDS_PRESENTATION_START": "Начать презентацию",
+    "IDS_PRESENTATION_STOP": "Остановить презентацию",
+    "IDS_PRESENTATION_SLIDE_NEXT": "Следующий слайд",
+    "IDS_PRESENTATION_SLIDE_PREVIOUS": "Предыдущий слайд",
+    "IDS_PRESENTATION_NAME_SELF": "Докладчик: {{displayName}} (Вы)",
+    "IDS_PRESENTATION_NAME": "Докладчик: {{displayName}}",
+
+    "IDS_SELFVIEW_HIDE": "Скрыть свое видео",
+    "IDS_SELFVIEW_SHOW": "Показать свое видео",
+
+    "IDS_SIDEBAR_SHOW": "Показать боковую панель",
+    "IDS_SIDEBAR_HIDE": "Скрыть боковую панель",
+
+    "IDS_MICROPHONE_MUTE": "Выключить мой микрофон",
+    "IDS_MICROPHONE_UNMUTE": "Включить мой микрофон",
+
+    "IDS_CAMERA_DISABLE": "Выключить мою камеру",
+    "IDS_CAMERA_ENABLE": "Включить мою камеру",
+
+    "IDS_FULLSCREEN_ACTIVATE": "Полноэкранный режим",
+    "IDS_FULLSCREEN_DEACTIVATE": "Выйти из полноэкранного режима",
+
+    "IDS_CONFERENCE_DISCONNECT_ALL": "Отключить всех участников",
+    "IDS_CONFERENCE_DISCONNECT_ALL_MESSAGE": "Вы действительно хотите отключить всех участников, включая себя?",
+
+    "IDS_CONFERENCE_LOCK": "Заблокировать конференцию",
+    "IDS_CONFERENCE_UNLOCK": "Разблокировать конференцию",
+    "IDS_CONFERENCE_LOCKED_TOOLTIP": "Конференция заблокирована",
+    "IDS_CONFERENCE_MUTE_GUESTS": "Выкл микрофоны всех гостей",
+    "IDS_CONFERENCE_UNMUTE_GUESTS": "Вкл микрофоны всех гостей",
+    "IDS_CONFERENCE_MUTED_GUESTS_TOOLTIP": "У всех гостей выключены микрофоны",
+
+    "IDS_ESCALATE_BAR_CAPTION": "Добро пожаловать в {{alias}}",
+    "IDS_ESCALATE_BAR": "Включить мой {{webcam}} или {{presentation}}",
+    "IDS_ESCALATE_BAR_MINIMIZED": "Включить {{webcam}} или позвонить на мой {{endpoint}}",
+    "IDS_ESCALATE_BAR_MINIMIZED_GUEST": "Включить мой {{webcam}}",
+    "IDS_ESCALATE_BAR_VIDEO": "КАМЕРА И МИКРОФОН сейчас",
+    "IDS_ESCALATE_BAR_VIDEO_TOOLTIP": "Начать использовать выбранную вами камеру и микрофон. Вы также сможете смотреть и показывать презентации, отправлять и получать сообщения в чате, и (если вы хозяин) управлять конференцией.",
+    "IDS_ESCALATE_BAR_VIDEO_SYSTEM": "ВИДЕО СИСТЕМА",
+    "IDS_ESCALATE_BAR_WAIT": "ПОЗЖЕ",
+    "IDS_ESCALATE_BAR_WAIT_TOOLTIP": "Начать без аудио и видео. Выберите эту опцию, если вы хотите смотреть и показывать презентации, или отправлять и получать сообщения в чате. Вы также сможете управлять конференцией, если вы хозяин. Если вы выбирете эту опцию, вы всегда сможете начать использовать камеру и микрофон позже.",
+    "IDS_ESCALATE_PROMPT": "Выберите камеру и микрофон",
+    "IDS_ESCALATE_BUTTON_START": "Подключиться",
+
+    "IDS_DIALPAD": "Клавиатура",
+    "IDS_CALL_STATISTICS": "Статистика вызова",
+    "IDS_CALL_STATISTICS_SERVER_VERSION": "Версия сервера",
+
+    "IDS_PARTICIPANT_ADD": "Добавить нового участника",
+    "IDS_PARTICIPANT_ADD_TEXT": "Введите адрес(name@domain) для вызова",
+    "IDS_PARTICIPANT_DISCONNECT": "Отключить {{displayName}}",
+    "IDS_PARTICIPANT_DISCONNECT_MESSAGE": "Вы действительно хотите отключить {{displayName}}?",
+    "IDS_PARTICIPANT_MUTE": "Выключить микрофон {{displayName}}",
+    "IDS_PARTICIPANT_UNMUTE": "Включить микрофон {{displayName}}",
+    "IDS_PARTICIPANT_UNLOCK": "Разрешить {{displayName}} войти в конференцию",
+
+    "IDS_PARTICIPANT_BADGE_SELF": "Ваш участник",
+    "IDS_PARTICIPANT_BADGE_CONNECTING": "Участник подключается",
+    "IDS_PARTICIPANT_BADGE_PRESENTING": "Участник презентует",
+    "IDS_PARTICIPANT_BADGE_MUTED": "Участнику выключен микрофон",
+    "IDS_PARTICIPANT_BADGE_WAITING": "Участник ожидает подключения к конференции",
+
+    "IDS_ROLE_GUEST": "Гость",
+    "IDS_ROLE_HOST": "Хозяин",
+
+    "IDS_CHAT": "Чат",
+    "IDS_CHAT_MESSAGES_PLACEHOLDER": "Пока в чате нет сообщений.\n Напишите сообщение ниже для начала чата.",
+    "IDS_CHAT_INPUT_PLACEHOLDER": "Написать сообщение",
+
+    "IDS_MESSAGE_MICROPHONE_MUTED": "Ваш микрофон выключен",
+    "IDS_MESSAGE_PARTICIPANT_WAITING": "{{displayName}} ожидает подключения к конференции.",
+    "IDS_MESSAGE_DISCONNECTED": "Вы были отключены",
+
+    "IDS_BUTTON_CONNECT": "Подключиться",
+    "IDS_BUTTON_DELETE": "Удалить",
+    "IDS_BUTTON_OK": "OK",
+    "IDS_BUTTON_CANCEL": "Отмена",
+    "IDS_BUTTON_CLOSE": "Закрыть",
+    "IDS_BUTTON_IGNORE": "Игнорировать",
+    "IDS_BUTTON_DENY": "Отклонить",
+    "IDS_BUTTON_ACCEPT": "Принять",
+    "IDS_BUTTON_INSTALL": "Инсталлировать",
+
+    "IDS_DIALOG_DISCONNECT_TITLE": "Отключить",
+    "IDS_DIALOG_DISCONNECT_MESSAGE": "Вы действительно хотите покинуть конференцию?",
+    "IDS_BUTTON_DISCONNECT": "Отключить",
+    "IDS_SETTINGS_DISCONNECT_PROMPT": "Показывать диалог подтверждения при отключении",
+    "IDS_SETTINGS_FULL_MOTION_PRESENTATION": "Показывать презентацию с высокой скоростью обновления кадров по умолчанию",
+    "IDS_DIALOG_DISCONNECT_PROMPT": "Не спрашивать меня снова",
+
+    "IDS_SHARE_SLIDES": "Показать картинку или PDF",
+    "IDS_SHARE_SCREEN": "Share your screen",
+    "IDS_SHARE_CONTENT": "Выберите контент для показа",
+    "IDS_DIALOG_FILE_SHARE_TITLE": "Показать слайды",
+    "IDS_DIALOG_FILE_SHARE_TEXT": "Переместите сюда картинки и PDF файлы для загрузки слайдов.",
+    "IDS_DIALOG_FILE_SHARE_BUTTON_SHARE": "Показать картинки или PDF",
+    "IDS_DIALOG_SLIDE_SHARE_CLEAR": "Удалить все слайды",
+
+    "IDS_STAGE_PLACEHOLDER": "Никто не презентует.",
+    "IDS_STAGE_GATEWAY_PLACEHOLDER": "Подключение...",
+
+    "IDS_DIALOG_SCREENSHARE_MISSING_TITLE": "Установить расширение VConnect Screensharing",
+    "IDS_DIALOG_SCREENSHARE_MISSING_MESSAGE": "To share your screen, you must first install the VConnect Screensharing Extension.\nWould you like to do this now?\n\nYou will need to refresh your browser window after installing.",
+    "IDS_SCREENSHARE_EXTENSION_URL": "https://chrome.google.com/webstore/detail/pexip-screensharing-exten/jmfbfggikgbdccejjilikgnfdjnpmlfe",
+
+    "IDS_DIALOG_LICENSES_TITLE": "Лицензии",
+
+    "Call Failed: Invalid role": "Неверный pin",
+    "Call Failed: Invalid PIN": "Неверный pin",
+    "Call Failed: Neither conference nor gateway found": "Неверная конфренция",
+    "Call Failed: 502 Bad Gateway": "Не удается подключиться к серверу",
+    "Call Failed: 503 Service Unavailable": "Не удается подключиться к серверу",
+    "Call Failed: Invalid token": "Потеряно соединение с сервером",
+
+    "": ""
+}

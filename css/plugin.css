@@ -1,0 +1,93 @@
+
+.browserSupport {
+    margin-top: 10px;
+    height: 270px;
+    background: #ffffff;
+}
+
+.tips {
+    height: 60px;
+    line-height: 60px;
+    margin-left: 55px;
+    font-size: 20px;
+    color: rgb(20, 27, 49);
+
+}
+.explain{
+    margin-left: 55px;
+    font-size: 13px;
+    color: rgb(43, 49, 70);
+}
+.browser{
+    height: 160px;
+    width: 100%;
+    margin-top:30px;
+    float: left;
+    font-size: 13px;
+    font-family: "Microsoft YaHei";
+    text-align: center;
+    color: rgb(43, 49, 70);
+}
+
+.common{
+    width: 95px;
+    height: 160px;
+}
+.aoyou{
+    width: 120px;
+    height: 160px;
+    margin-left: 55px;
+
+}
+.aoyouLogo{
+    width: 92px;
+    height: 92px;
+    margin-bottom:5px;
+    margin:0 auto;
+    background: url("../img/broweraoyou.png") left top no-repeat;
+    background-size: 100%;
+    text-align: center;
+
+}
+.browser2{
+margin-left:120px;
+}
+.browser2Logo{
+background: url("../img/360.png") left top no-repeat;
+    width: 95px;
+    height: 95px;
+    background-size: 100%;
+}
+.google{
+margin-left:130px;
+}
+.googleLogo{
+    background: url("../img/google.png") left top no-repeat;
+    width: 95px;
+    height: 95px;
+    background-size: cover;
+}
+.QQ{
+margin-left:114px;
+}
+.QQLogo{
+    background: url("../img/qq.png") left top no-repeat;
+    width: 95px;
+    height: 85px;
+    background-size: cover;
+}
+.bottom {
+    margin-top: 10px;
+    height: 130px;
+    text-align: center;
+    color: rgb(119, 120, 124);
+    background: #ebebeb;
+
+}
+
+.slogan {
+    font-size: 20px;
+    height: 56px;
+    line-height: 56px;
+
+}

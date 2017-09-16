@@ -1,0 +1,154 @@
+.brand-logo:before {
+  content: url(logo.png);
+}
+
+.brand-background {
+    /*background-image: url(background.jpg);*/
+    background-image: url(background1.png);
+    background-size: cover;
+    background-position: center top;
+    background-color: #212121;
+    color: white;
+}
+
+.brand-primary {
+    background-color: #212121;
+    color: white;
+    border-color: #212121;
+    border-width: 1px;
+}
+
+.brand-secondary,
+.brand-tertiary-hover:hover {
+    background-color: #f5f5f5;
+    color: #212121;
+    border-color: #E0E0E0;
+    border-width: 1px;
+}
+
+.brand-tertiary,
+input[type="text"],
+input[type="password"],
+select {
+    background-color: white;
+    border-color: #E0E0E0;
+    color: #212121;
+    outline: none;
+}
+
+.black,
+.button {
+    color: white;
+    background-color: #212121;
+}
+.white {
+    color: #212121;
+    background-color: white;
+}
+input.ng-dirty.ng-invalid,
+select.ng-dirty.ng-invalid {
+    border-color: #F44336;
+    background-color: #FFCDD2;
+}
+.red {
+    background-color: #F44336;
+    color: white;
+}
+.green {
+    background-color: #4CAF50;
+    color: white;
+}
+.blue {
+    background-color: #2196F3;
+    color: white;
+}
+.gray {
+    background-color: #757575;
+    color: white;
+}
+
+.stage-background {
+    background-color: #191919;
+    opacity: 0.75;
+}
+
+.conference-brand-bottom-container{
+    background:pink;
+}
+/*添加所在会议室号自动隐藏*/
+.idle .conference-brand-bottom1-left:not(:hover){
+    display: none;
+}
+.idle .conference-brand-bottom1-right:not(:hover){
+    display: none;
+}
+.conference-brand-bottom{
+    height:106px;
+    width:100%;
+    position: absolute;
+    bottom:0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: url("../../../img/bottom-bar.png") center center no-repeat;
+    background-size:cover;
+}
+.conference-brand-bottom1{
+    position: absolute;
+    bottom:0;
+}
+
+.conference-brand-bottom1-left{
+    background: url("../../../img/bottom-conference-left.png") center center no-repeat;
+    background-size:cover;
+    height: 72px;
+    width: 249px;
+    display: inline-block;
+}
+
+.conference-brand-bottom1-right{
+    background: url("../../../img/bottom-conference-right.png") center center no-repeat;
+    background-size:cover;
+    height: 27px;
+    width: 100%;
+    margin-left: 249px;
+    margin-top: -27px;
+}
+
+/*添加参会人的样式*/
+.choose-host, .choose-guest{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.chooseRole .checkbox-btn{
+    display: inline-block;
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border-radius: 15px;
+    outline: 0 !important;
+    /*line-height: 20px;*/
+    color: #d8d8d8;
+}
+.chooseRole .checkbox-btn:after{
+    content: "";
+    display:block;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 15px;
+    font-size: 16px;
+    color: #fff;
+    border: 1px solid #4cb906;
+    background-color: #fff;
+    box-sizing:border-box;
+    border-radius: 15px;
+}
+.chooseRole .checkbox-btn:checked:after{
+    /*border:none;*/
+    background: url("../../../img/btn-checked.png") center center no-repeat;
+    background-size:85%;
+}

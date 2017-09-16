@@ -1,0 +1,96 @@
+.hide {
+    display: none !important;
+}
+
+.custom-form {
+    position: absolute;
+    margin-top: 73px !important;
+    margin-left: -218px !important;
+    padding: 0px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.split-screen-list-container {
+    display: flex;
+    justify-content: space-around;
+    width: 570px;
+    background: #ffffff;
+    margin-left: 43%;
+    margin-top: -16px;
+    height: 65px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+}
+
+.split-screen-item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    cursor: pointer;
+    color: #fff;
+    font-size:12px;
+}
+
+.main-screen-img {
+    background: url("../img/meeting-ctrl-menu-bar/zhuping1.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+}
+
+.nav_main-screen-img {
+    background: url("../img/meeting-ctrl-menu-bar/zhuping1.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+}
+
+.five-split-screen-img {
+    background: url("../img/meeting-ctrl-menu-bar/sifen1.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+}
+
+.nav_five-split-screen-img {
+    background: url("../img/meeting-ctrl-menu-bar/sifen1.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+}
+
+.one-seven-screen-img {
+    background: url("../img/meeting-ctrl-menu-bar/bafen1.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+}
+
+.nav_one-seven-screen-img {
+    background: url("../img/meeting-ctrl-menu-bar/bafen1.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+}
+
+.one-twenty-one-screen-img {
+    background: url("../img/meeting-ctrl-menu-bar/ererfen1.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+}
+
+.nav_one-twenty-one-screen-img {
+    background: url("../img/meeting-ctrl-menu-bar/ererfen1.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+}
+
+.two-twenty-one-screen-img {
+    background: url("../img/meeting-ctrl-menu-bar/ersanfen1.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+}
+
+.nav_two-twenty-one-screen-img {
+    background: url("../img/meeting-ctrl-menu-bar/ersanfen1.png") center no-repeat;
+    width: 27px;
+    height: 30px;
+}

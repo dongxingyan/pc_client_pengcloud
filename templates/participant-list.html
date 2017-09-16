@@ -1,0 +1,79 @@
+<div><input style="text-align: center;background:#3e3e3e;border:none;margin:0; padding: 8px;font-size: 12px;color: whitesmoke" type="text" placeholder="{{'IDS_SEARCH' | translate}}" ng-model="drpengExtend.search" translate></div>
+<div style="background: #2e2e2e;border-bottom:1px solid #434343;padding:5px 8px;" ng-if="participant.displayName != 'RTMP流'" class="side-bar-list-item brand-tertiary brand-tertiary-hover sel-participant-list-item" ng-repeat="participant in drpengExtend.getParticipantsList() | values | filter: {displayName: drpengExtend.search} | orderBy:['-handUp','-startTime']" >
+    <!--<div class="menu-call-off" ng-show="connection.data.isChair && !connection.data.isGateway" style="background:pink;float: right;text-align: right;width: 30px;height: 30px;">-->
+        <!---->
+    <!--</div>-->
+
+    <div class="menu" ng-show="connection.data.isChair && !connection.data.isGateway" ng-click="$event.stopPropagation();">
+        <span class="sel-participant-toggle-mute" ng-click="connection.participantToggleMute(participant)" ng-show="participant.isConnected">
+            <!--开始静音-->
+            <a style="padding:6px;" bindonce bo-title="'IDS_PARTICIPANT_MUTE' | translate:{displayName: participant.displayName}" class="transparent button sel-participant-mute" href="" ng-show="!participant.isMuted">
+                <i class="mdi-mic sel-participant-button-common" style="color: white"></i>
+            </a>
+            <!--取消静音-->
+            <a style="padding:6px;" bindonce bo-title="'IDS_PARTICIPANT_UNMUTE' | translate:{displayName: participant.displayName}" class="transparent button sel-participant-mute" href="" ng-show="participant.isMuted">
+                <i class="mdi-moff sel-participant-button-common" style="color: white"></i>
+            </a>
+        </span>
+        <span class="sel-participant-toggle-mute" ng-click="" ng-show="participant.isConnected">
+            <!--挂断-->
+            <a style="padding:6px;" bindonce bo-title="'IDS_PARTICIPANT_DISCONNECT' | translate:{displayName: participant.displayName}" class="transparent button sel-participant-mute" href="" ng-click="connection.participantDisconnect(participant);" >
+                <i class="mdi-call-end sel-participant-button-common1" style="color: white"></i>
+            </a>
+        </span>
+
+        <!--锁定会议时同意访客加入-->
+        <span ng-show="participant.isWaiting" ng-click="connection.participantUnlock(participant)">
+            <a bindonce bo-title="'IDS_PARTICIPANT_UNLOCK' | translate:{displayName: participant.displayName}" class="button participant-lock-icon" href="">
+                <i  class="participant-lock-common" style="background: #0079de;" translate>IDS_BUTTON_AGREE</i>
+            </a>
+        </span>
+        <!--锁定会议时拒绝访客加入-->
+        <span ng-if="participant.isWaiting">
+            <a bindonce bo-title="'IDS_PARTICIPANT_DISCONNECT' | translate:{displayName: participant.displayName}" class="button sel-participant-disconnect participant-lock-icon" href="" ng-click="connection.participantDisconnect(participant)">
+                <i style="background: #fa5f61" class="participant-lock-common" translate>IDS_BUTTON_DENY</i>
+            </a>
+        </span>
+    </div>
+
+
+    <div class="avatar" style="height: 35px;width: 35px;margin-right: 0px">
+        <!-- <div avatar name="{{participant.displayName}}"></div> -->
+        <img ng-src="{{participant.avatarUrl}}" style="visibility: hidden" onload="this.style.visibility='visible'" onerror="this.style.visibility='hidden'" />
+        <div class="badge-container">
+            <!-- <div class="badge gray sel-participant-connecting" title="{{'IDS_PARTICIPANT_BADGE_SELF' | translate}}" ng-if="participant.isSelf">
+                <i class="mdi-account-circle"></i>
+            </div> -->
+            <div class="badge green sel-participant-connecting" bindonce bo-title="'IDS_PARTICIPANT_BADGE_CONNECTING' | translate" ng-if="participant.isConnecting">
+                <i class="mdi-ring-volume"></i>
+            </div>
+            <div class="badge blue sel-participant-presenting" bindonce bo-title="'IDS_PARTICIPANT_BADGE_PRESENTING' | translate" ng-if="participant.isPresenting">
+                <i class="mdi-ondemand-video"></i>
+            </div>
+            <div class="badge red sel-participant-muted" bindonce bo-title="'IDS_PARTICIPANT_BADGE_MUTED' | translate" ng-if="participant.isMuted">
+                <i class="mdi-moff"></i>
+            </div>
+            <div class="badge red sel-participant-waiting" bindonce bo-title="'IDS_PARTICIPANT_BADGE_WAITING' | translate" ng-if="participant.isWaiting">
+                <i class="mdi-pause"></i>
+            </div>
+            <div class="badge red" bindonce bo-title="'IDS_PARTICIPANT_BADGE_STREAMING' | translate" ng-if="participant.isStreaming">
+                <i class="mdi-cloud-upload"></i>
+            </div>
+            <div class="badge blue" bindonce bo-title="'IDS_PARTICIPANT_BADGE_SPEAKING' | translate" ng-if="participant.vad == 100">
+                <i class="mdi-volume-up"></i>
+            </div>
+        </div>
+    </div>
+    <div class="participant-list-name sel-participant-name " style="padding-left: 10px" bindonce bo-title="participant.displayName + ' (' + participant.uri + ')'" bo-bind="participant.displayName">
+    </div>
+    <div class="participant-list-name-detail" style="opacity: 1;margin-left: 2px" bindonce bo-title="participant.displayName + ' (' + participant.uri + ')'">
+        <span class="participant-info-identity" ng-if="participant.role==='chair'" translate="IDS_PARTICIPANT_ROLE_{{participant.role}}"></span>
+    </div>
+    <div ng-show="participant.handUp" style="display: inline-block;line-height: 30px;vertical-align: top;margin-top: 7px;margin-left: 4px;" title="{{'IDS_HAND_UP' | translate}}">
+        <a href="">
+            <img src="../img/hand.png" alt="">
+        </a>
+    </div>
+    <div class="clearfix" style="float: left;"></div>
+
+</div>

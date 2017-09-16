@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="no-js" id="ng-app" lang="en" ng-app="pexapp" ng-controller="MainController">
+
+<head>
+    <base href="../">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="configuration/favicon.png" rel="icon" type="image/x-icon" />
+
+    <link href="fonts/roboto/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="fonts/mdi/style.css">
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/stage.css" rel="stylesheet" />
+    <link href="css/app-bar.css" rel="stylesheet" />
+    <link href="css/side-bar.css" rel="stylesheet" />
+    <link href="css/toast.css" rel="stylesheet" />
+    <link href="css/mediastats.css" rel="stylesheet" />
+    <link href="css/dialpad.css" rel="stylesheet" />
+    <link href="css/chat.css" rel="stylesheet" />
+    <link href="css/dialog-no-authority.css" rel="stylesheet" />
+    <link href="css/dialog-reservation-live.css" rel="stylesheet" />
+    <link href="css/dialog-speaking-mode.css" rel="stylesheet" />
+    <link href="css/dialog-split-screen-mode.css" rel="stylesheet" />
+    <link href="css/login.css" rel="stylesheet" />
+    <link href="css/loading.css" rel="stylesheet" />
+    <link href="css/escalate-media.css" rel="stylesheet" />
+    <link href="css/file-share.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/newPage/main.css">
+    <link ng-href="themes/default/brand.css" rel="stylesheet" />
+    <link ng-href="{{localStorage.theme}}/brand.css" rel="stylesheet" />
+
+    <script src="desktop-client/js/logger.js"></script>
+
+    <script src="js/vendor/jquery.min.js" onload="if (typeof module !== 'undefined') {window.$ = window.jQuery = module.exports;}"></script>
+    <script src="js/vendor/jquery-ui.min.js"></script>
+    <script src="js/vendor/jquery.titlealert.js"></script>
+    <script src="js/vendor/fullscreen.js"></script>
+
+    <script src="js/vendor/keen.min.js"></script>
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/bindonce.js"></script>
+
+    <script src="js/vendor/angular-translate.min.js"></script>
+    <script src="js/vendor/angular-translate-loader-static-files.min.js"></script>
+    <script src="js/vendor/ngStorage.min.js"></script>
+
+    <script src="js/vendor/angular-sanitize.min.js"></script>
+    <script src="js/vendor/angular-enhance-text.min.js"></script>
+
+    <script src="js/vendor/pdf.js"></script>
+
+    <script src="js/pexapp.js"></script>
+    <script src="configuration/settings.js" charset="utf-8"></script>
+    <script src="js/settings.js"></script>
+
+    <script src="js/call-history-service.js"></script>
+    <script src="js/toggle-directive.js"></script>
+    <script src="js/focus-directive.js"></script>
+    <script src="js/media-sources.js"></script>
+    <script src="js/media-device.service.js"></script>
+    <script src="js/call-service.js"></script>
+    <script src="desktop-client/js/srv-service.js"></script>
+    <script src="js/slide-share-service.js"></script>
+    <script src="js/reporting.service.js"></script>
+    <script src="drpeng/websocket-service.js"></script>
+
+    <script src="js/avatar-directive.js"></script>
+
+    <script src="js/main-controller.js"></script>
+    <script src="js/conference.js"></script>
+
+    <script src="js/swfObject.js"></script>
+    <script src="js/aspect-watcher-directive.js"></script>
+    <script src="js/idle-timer.js"></script>
+
+    <script src="js/toast-service.js"></script>
+
+    <script src="desktop-client/contextmenu.js"></script>
+
+    <script>
+        if ('electron' in process.versions) {} else {
+            window._initDesktopClientWindowHandlers = function(scope) {
+                var currentWindow = nw.Window.get();
+                currentWindow.once('close', function() {
+                    currentWindow.hide();
+                    if (scope.connection) {
+                        scope.disconnect(true);
+                    } else {
+                        window.close();
+                    }
+                });
+            }
+        }
+    </script>
+
+    <script>
+        angular.module('pexapp')
+
+        .factory('globalService', function() {
+            if ('electron' in process.versions) {
+                return require('electron').remote.getGlobal('globalService');
+            } else {
+                return global.globalService;
+            }
+        });
+    </script>
+
+    <script>
+        if ('electron' in process.versions) {
+            var electron = require('electron');
+            var conferenceWindow = electron.remote.require('./conference-window');
+            var ipcRenderer = electron.ipcRenderer;
+            angular.module('pexapp')
+
+            .run(function($rootScope, $log) {
+                ipcRenderer.on('open-new', function(event, message) {
+                    $log.log('Got window message', message)
+                    $rootScope.$apply(function() {
+                        $rootScope.newConferencePromt = function(response) {
+                            message.result = response;
+                            $log.log('Sending window message', message)
+                            conferenceWindow.confirmOpen(message);
+                            delete $rootScope.newConferencePromt;
+                        }
+                    });
+                });
+            });
+        } else {
+            nw.Screen.Init();
+
+            angular.module('pexapp')
+
+            .run(function($rootScope, $log) {
+                function gotStreamId(event, streamId) {
+                    $log.log('Got streamId', streamId);
+                    event.data.type = 'pexGetScreenDone';
+                    event.data.sourceId = streamId;
+                    window.postMessage(event.data, event.origin);
+                }
+
+                window.addEventListener('message', function(event) {
+                    switch (event.data.type) {
+                        case 'pexGetScreen':
+                            event.data.type = 'pexGetScreenPending';
+                            window.postMessage(event.data, event.origin);
+
+                            if (nw.Screen.chooseDesktopMedia(['window', 'screen'], function(streamId) {
+                                    gotStreamId(event, streamId)
+                                }) === false) {
+                                gotStreamId(event, null);
+                            }
+                            break;
+                        case 'open-new':
+                            $rootScope.newConferencePromt = function(response) {
+                                $log.log('Sending window message', event)
+                                event.data.result = response;
+                                event.source.postMessage(event.data, event.origin);
+                                delete $rootScope.newConferencePromt;
+                            }
+                            break;
+                    }
+                }, false);
+            });
+        }
+    </script>
+</head>
+
+<body ng-cloak class="brand-background" style="position: relative" idle-timer onselectstart="return false">
+    <div ng-if="!connection.data">
+        <div class="overlay-container">
+            <div class="overlay-content">
+                <div class="brand-secondary">
+                    <div ng-include="'templates/login.html'"></div>
+                </div>
+            </div>
+        </div>
+        <div ng-include="'templates/dialog-call-history.html'"></div>
+        <div ng-include="'templates/licenses.html'"></div>
+    </div>
+
+    <div ng-if="connection.data" ng-include="'templates/conference.html'" ng-controller="ConferenceController" idle-timer ></div>
+
+    <div class="toast-messages">
+        <div class="toast-message" ng-repeat="message in toastMessages track by $index" ng-click="toastMessages.splice($index, 1)">
+            <span translate>{{message}}</span>
+        </div>
+    </div>
+
+    <div class="overlay-container brand-overlay sel-modal-popup" ng-if="getModalMessage()" ng-click="getModalMessage().dismiss()">
+        <div class="overlay-content brand-secondary">
+            <div class="dialog-title" ng-if="getModalMessage().title" translate>{{getModalMessage().title}}</div>
+            <div class="dialog-content">
+                <div class="sel-modal-popup-message" translate>{{getModalMessage().message}}</div>
+            </div>
+            <div class="alert-actions">
+                <button type="button" class="button square" ng-repeat="action in getModalMessage().actions" ng-click="action.callback()">
+                    <span translate>{{action.caption}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-include="'templates/dialog-call-escalate.html'"></div>
+    <div ng-include="'templates/dialog-new-conference-prompt.html'"></div>
+    <!--连接中显示的状态-->
+    <div class="conference-brand-bottom" ng-if="!connection.data">
+        <div class="conference-network-status"></div>
+        <div style="display: flex;flex-direction: column;text-align: center" class="conference-account">
+            <span style="font-size:36px;" translate="{{params.conference}}"></span>
+            <span ng-if="loadingConference" style="font-size:22px;" translate="IDS_PARTICIPANT_ADD_CONNECTING"></span>
+
+        </div>
+        <div class="conference-audio-status"></div>
+    </div>
+    <!--进入会议之后显示的状态-->
+    <div class="conference-brand-bottom-container" ng-if="connection.data">
+        <div class="conference-brand-bottom1-left conference-brand-bottom1">
+        <div style="display: flex;margin-left:20px;margin-top:10px;flex-direction:column;justify-content: center;" class="conference-brand-meetingNum">
+            <div><span style="font-size: 18px;" translate>IDS_CONFERENCE_CURRENT</span><i ng-if="call.locked" style="display: inline-block;height:20px;width:40px;" class="lock-meeting-img"></i></div>
+            <span style="font-size: 36px;font-weight:700;overflow: hidden;text-overflow: ellipsis">{{params.remote_alias || connection.data.alias}}</span>
+        </div>
+        </div>
+
+        <div class="conference-brand-bottom1-right conference-brand-bottom1"></div>
+
+    </div>
+
+</body>
+</html>

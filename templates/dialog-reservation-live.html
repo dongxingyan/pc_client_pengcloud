@@ -1,0 +1,21 @@
+<div class="overlay-container brand-overlay" id="dialog-reservation-live" toggle>
+    <form style="padding:5px;" class="overlay-content brand-secondary reservation-live-form" novalidate>
+        <div style="text-align: right">
+            <i style="color:#0b93f9;cursor: pointer;font-size:34px" id="J-cancel-live" class="iconfont" ng-click="hide();drpengExtend.selectLiveID = null;">&#xe81a;</i>
+        </div>
+        <div class="live-select-container">
+            <div class="select-title" translate>IDS_SCHEDULED_LIVE </div>
+            <span></span>
+            <select name="live-list" id="" class="live-select" ng-model="drpengExtend.selectLiveID">
+                <option value="" style="display: none;" translate="">IDS_SELECT_QING</option>
+                <option ng-value="item.id" ng-repeat="item in drpengExtend.availableLiveList">{{item.startTime.substring(5, 7)+'月'+item.startTime.substring(8, 10)+'日 '+item.title}}</option>
+            </select>
+        </div>
+        <div class="live-operation-btn">
+            <button class="button square ng-scope start-live" ng-if="drpengExtend.selectLiveID" ng-click="toggle('loading');drpengExtend.startLiveClick();hide();drpengExtend.selectLiveID = null" translate>IDS_START_LIVE</button>
+            <button class="button square ng-scope start-live" ng-if="!drpengExtend.selectLiveID" translate>IDS_START_LIVE</button>
+            <!--<button class="button square ng-scope" ng-click="hide();drpengExtend.selectLiveID = null;" id="J-cancel-live" translate>IDS_BUTTON_CANCEL</button>-->
+        </div>
+        <a style="text-decoration: none;text-align: center;padding:0 20px;" class="create-live" translate>IDS_CREATE_LIVE</a>
+    </form>
+</div>

@@ -1,0 +1,103 @@
+<div class="overlay-container brand-overlay sel-dialog-escalate" id="dialog-escalate" toggle>
+    <form style="background-color: #fff;" class="overlay-content brand-secondary" ng-submit="connection.data ? startMediaCall() : loginApp(params.conference, params.name, true); hide();" ng-init="flashPreviewId = 'flash-preview-video'" ng-controller="UserMediaPreviewController">
+        <div ng-if="!params.audioonly" class="dialog-title" translate>IDS_ESCALATE_PROMPT</div>
+        <div ng-if="params.audioonly" class="dialog-title" translate>IDS_ESCALATE_PROMPT_MICROPHONE</div>
+        <div class="dialog-content">
+            <div class="placeholder-text" ng-hide="mediaSources.audio || mediaSources.video">
+                <div>
+                    <img src="img/spinner-black.svg" class="spinner" />
+                </div>
+                <span translate>IDS_ESCALATE_REQUESTING_ACCESS</span>
+            </div>
+            <div class="red login-error" ng-if="getUserMediaError" translate>
+                {{getUserMediaError | translate}}
+            </div>
+
+            <div class="padded card brand-tertiary" ng-init="flashPreviewId='flash-preview-video'"
+                 ng-controller="UserMediaPreviewController">
+                <!--镜头-->
+                <div ng-if="!params.audioonly && localStorage.defaultBandwidth"  ng-show="mediaSources.video">
+                    <div class="setting_line_space">
+                        <label class="settings-label" translate>IDS_SETTINGS_CAMERA</label>
+                        <select class="sel-escalate-camera setting_select"
+                                ng-model="localStorage.cameraSourceId"
+                                ng-options="source.id as (source.label | translate) for source in mediaSources.video"
+                                ng-change="previewUserMedia()" ng-show="mediaSources.video">
+                            <option value="" translate>IDS_SETTINGS_CAMERA_DEFAULT</option>
+                        </select>
+                    </div>
+                    <div style="text-align: center">
+                        <div class="video-preview"
+                             ng-if="!params.audioonly&&platformSettings.hasWebRTC && localStorage.cameraSourceId !== false && localStorage.defaultBandwidth && mediaSources.video.length">
+                            <video muted autoplay ng-src="{{localMediaStreamURL}}"
+                                   ng-if="platformSettings.hasWebRTC"/>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <div class="video-preview"
+                             ng-if="!platformSettings.hasWebRTC">
+                            <div id="flash-preview-placeholder">
+                                <a href="http://www.adobe.com/go/getflashplayer">
+                                    <img src="https://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+                                </a>
+                            </div>
+                            <div swf-object flash-id="flash-preview-video" replace-id="flash-preview-placeholder" ref-id="/static/webrtc/flash/PexVideo.swf" width="100%" height="100%"></div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;height: 80px">
+                        <div class="video-preview"
+                             ng-if="connection.data && localStorage.cameraSourceId !== false">
+                            <div class="settings-label" translate>IDS_BANDWIDTH</div>
+                            <select class="sel-escalate-bandwidth" ng-model="localStorage.defaultBandwidth" ng-options="b.value as (b.name | translate:{bandwidth: b.value}) for b in applicationSettings.bandwidths">
+                            </select>
+                            </div>
+                    </div>
+                </div>
+                <!--麦克风-->
+                <div ng-show="mediaSources.audio">
+                    <div class="setting_line_space">
+                        <label class="settings-label" translate>IDS_SETTINGS_MICROPHONE</label>
+                        <select class="sel-escalate-microphone setting_select"
+                                ng-model="localStorage.microphoneSourceId"
+                                ng-options="source.id as (source.label | translate) for source in mediaSources.audio"
+                                ng-change="previewUserMedia()">
+                            <option value="" translate>IDS_SETTINGS_MICROPHONE_DEFAULT</option>
+                        </select>
+                    </div>
+                    <div class="audio-preview">
+                        <div class="blue audio-preview" ng-style="{ width: microphoneVolume+'%' }">
+                        </div>
+                    </div>
+                </div>
+                <!--音频输出-->
+                <div ng-show="mediaSources.output.length">
+                    <div class="setting_line_space">
+                        <label class="settings-label" translate>IDS_SETTINGS_AUDIO_OUTPUT</label>
+                        <select class="sel-escalate-output setting_select" ng-model="localStorage.audioOutputId"
+                                ng-options="source.id as (source.label | translate) for source in mediaSources.output">
+                            <option value="" translate>IDS_SETTINGS_AUDIO_OUTPUT_DEFAULT</option>
+                        </select>
+                    </div>
+                    <div style="display: flex;justify-content: space-between;align-items: center">
+                        <label>
+                            <input type="checkbox" ng-model="localStorage.promptMedia" ng-true-value="false" ng-false-value="true" />
+                            <span translate>IDS_SETTINGS_START_ALWAYS</span>
+                        </label>
+                        <pex-test-audio>
+
+                        </pex-test-audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-actions">
+            <button style="background:#FC5F62" type="button" class="button square sel-escalate-video-close" ng-click="hide()">
+                <span translate>IDS_BUTTON_CANCEL</span>
+            </button>
+            <button style="background: #0f77ff" type="submit" class="button square sel-escalate-start" ng-show="mediaSources.audio || mediaSources.video">
+                <span translate>IDS_ESCALATE_BUTTON_START</span>
+            </button>
+        </div>
+    </form>
+</div>

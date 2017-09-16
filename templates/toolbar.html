@@ -1,0 +1,217 @@
+<!--桌面共享和文件共享-->
+
+<div style="margin:0;padding:16px;background: rgba(0,0,0,.7);" class="toolbar-buttons sel-toolbar">
+    <!--<div ng-if="!hideSideBarButton" style="float:left;" ng-click="sideBar.toggle()">-->
+        <!--<a title="{{'IDS_SIDEBAR_HIDE' | translate}}" href="" class="sel-sidebar-hide button ng-no-animate" ng-show="!sideBar.hidden" ng-class="{active: !chat.chatSize && chat.messages.length - chat.seenMessages}">-->
+            <!--<i class="mdi-chevron-left"></i>-->
+            <!--<div class="badge-container" ng-if="!chat.chatSize && chat.messages.length - chat.seenMessages">-->
+                <!--<div class="sel-unseen-chat-messages badge blue">-->
+                    <!--{{chat.messages.length - chat.seenMessages}}-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</a>-->
+        <!--<a title="{{'IDS_SIDEBAR_SHOW' | translate}}" href="" class="sel-sidebar-show button ng-no-animate" ng-show="sideBar.hidden" ng-class="{active: chat.messages.length - chat.seenMessages}">-->
+            <!--<i class="mdi-chevron-right"></i>-->
+            <!--<div class="badge-container" ng-if="chat.messages.length - chat.seenMessages">-->
+                <!--<div class="sel-unseen-chat-messages badge blue">-->
+                    <!--{{chat.messages.length - chat.seenMessages}}-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</a>-->
+    <!--</div>-->
+    <!--静音图标-->
+    <span ng-click="call.toggleMicrophone()" ng-if="connection.localAudioStream">
+        <a href="" class="sel-microphone-mute button button-common" ng-show="!call.microphoneMuted && !drpengExtend.getIsMuted()">
+            <i class="mdi-mic"></i>
+            <!--静音-->
+            <span class="toolbar-icon-title" translate>IDS_PARTICIPANT_MUTED</span>
+        </a>
+        <a href="" class="sel-microphone-unmute button button-common" ng-class="{'active': micActivity}" ng-show="call.microphoneMuted || drpengExtend.getIsMuted()">
+            <i class="toolbar-mic-cancel"></i>
+            <!--解除静音-->
+            <span class="toolbar-icon-title meeting-toolbar-common" translate>IDS_PARTICIPANT_UNUTED</span>
+        </a>
+    </span>
+
+    <!--关闭摄像头图标-->
+    <span ng-click="connection.toggleCamera()" ng-if="connection.remoteVideoStream && connection.localVideoStream">
+        <a href="" class="sel-camera-disable button button-common" ng-show="!call.cameraMuted">
+            <i class="mdi-videocam"></i>
+            <span class="toolbar-icon-title" translate>IDS_CAMERA_STOP</span>
+
+        </a>
+        <a href="" class="sel-camera-enable button button-common" ng-show="call.cameraMuted">
+            <i class="toolbar-videocam-off"></i>
+            <span class="toolbar-icon-title meeting-toolbar-common" translate>IDS_CAMERA_OPEN</span>
+        </a>
+    </span>
+
+    <!--参会人员图标-->
+    <span>
+        <a href="" class="sel-microphone-mute button button-common" ng-click="sideBar.toggle()" ng-show="sideBar.hidden">
+            <i class="toolbar-participant"></i>
+            <span class="toolbar-icon-title" translate>IDS_PARTICIPANT_COUNT</span>
+            <div class="participant-icon" style="" translate>{{drpengExtend.length}}</div>
+        </a>
+        <a href="" class="sel-microphone-mute button button-common" ng-click="sideBar.toggle()" ng-show="!sideBar.hidden">
+            <i class="toolbar-participant_select"></i>
+            <span class="toolbar-icon-title meeting-toolbar-common" translate>IDS_PARTICIPANT_COUNT</span>
+            <div class="participant-icon" style="" translate>{{drpengExtend.length}}</div>
+        </a>
+    </span>
+
+    <!--举手图标-->
+    <span>
+        <a href="" class="sel-microphone-mute button button-common" ng-if="drpengExtend.isMeHandUp()" ng-click="drpengExtend.setHandUp(false)">
+            <i class="toolbar-hand-down "></i>
+            <span class="toolbar-icon-title meeting-toolbar-common" translate>IDS_HAND_DOWN</span>
+        </a>
+        <a href="" class="sel-microphone-mute button button-common" ng-if="!drpengExtend.isMeHandUp()" ng-click="drpengExtend.setHandUp(true)">
+            <i class="hand-up"></i>
+            <span style="margin-top:40px" class="toolbar-icon-title" translate>IDS_HAND_UP</span>
+        </a>
+    </span>
+
+    <!--共享图标-->
+    <div style="width:3rem" href="" class="sel-present-screen button button-common"  ng-if="!call.screenShareMode">
+        <i class="share-img"></i>
+        <span class="toolbar-icon-title" translate>IDS_DIALOG_SHARE</span>
+        <div style="position: absolute;top:-58px;left:-57px;opacity: 0.7" class="toolbar-share arrow_box">
+            <!--屏幕共享图标-->
+            <a style="width:3rem ;margin:0" href="" class="sel-present-screen toolbar-share-common" ng-click="startScreenShare()" ng-if="(!connection.data.remoteCallType || connection.data.remoteCallType == 'video') && platformSettings.screenshareSupported && !call.screenShareMode && connection.data.bandwidthOut > 64">
+                <i style="font-size:24px;" class="mdi-personal-video"></i>
+                <span style="margin-right:-22px;" class="toolbar-icon-title" translate>IDS_DIALOG_SHARE_SCREEN</span>
+            </a>
+
+            <!--共享文件图标-->
+            <a style="width:3rem;margin:0" href="" class="sel-present-slides toolbar-share-common" ng-click="toggle('dialog-slide-share')" ng-if="(!connection.data.remoteCallType || connection.data.remoteCallType == 'video') && !call.screenShareMode">
+                <i class="toolbar-share-file"></i>
+                <span style="margin-right:-22px;" class="toolbar-icon-title" translate>IDS_DIALOG_SHARE_FILE</span>
+            </a>
+        </div>
+    </div>
+
+
+    <!--停止共享图标-->
+    <a title="{{'IDS_PRESENTATION_STOP' | translate}}" href="" class="sel-presentation-stop button button-common" ng-click="call.stopScreenShare()" ng-if="call.screenShareMode" ng-switch="call.screenShareMode">
+        <!-- <i class="mdi-dvr"></i> -->
+        <!-- <i class="mdi-stop"></i> -->
+        <i class="toolbar-share-off"></i>
+        <!--<i class="mdi-video-collection" ng-switch-when="screen_http"></i>-->
+        <span class="toolbar-icon-title meeting-toolbar-common" translate>IDS_SHARE_STOP</span>
+        <!--<div class="badge-container">-->
+            <!--<div class="badge blue">-->
+                <!--<i class="mdi-play-arrow"></i>-->
+            <!--</div>-->
+        <!--</div>-->
+    </a>
+
+
+    <!--键盘图标-->
+    <a title="{{'IDS_DIALPAD' | translate}}" href="" class="sel-toggle-dialpad button button-common" ng-show="!stateParams.screen" ng-click="toggle('dialog-dialpad')" ng-if="((connection.remoteAudioStream || connection.remoteVideoStream) && (connection.data.isGateway || call.currentServiceType() == 'waiting_room'))">
+        <i class="mdi-dialpad"></i>
+        <span class="toolbar-icon-title" translate>IDS_DIALPAD</span>
+    </a>
+
+    <!--音量控制图标-->
+    <div title="{{'IDS_VOLUME' | translate}}" class="button button-common" ng-if="connection.remoteAudioStream && platformSettings.volumeControlsEnabled">
+        <i ng-class="{'mdi-volume-up': volume.value > 0.5, 'mdi-volume-down': volume.value > 0 && volume.value <= 0.5, 'mdi-volume-off': volume.value == 0}" ng-click="volume.toggleMute()"></i>
+        <span class="toolbar-icon-title" translate>IDS_VOLUME</span>
+        <div class="volume-popup">
+            <form class="arrow_box">
+                <div ng-if="volume.setOutputDevice">
+                    <a style="margin:0" title="{{'IDS_SELECT_AUDIO_OUTPUT' | translate}}" href="" class="transparent button" ng-click="toggle('dialog-select-output')" ng-if="connection.remoteAudioStream">
+                        <i class="mdi-settings"></i>
+                    </a>
+                </div>
+                <div>
+                    <input min="0" max="1" step="0.05" type="range" orient="vertical" ng-model="volume.value" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--开始视频-->
+    <span ng-show="!connection.connectingMedia && !connection.remoteAudioStream && !connection.remoteVideoStream">
+        <div style="position: relative; display: inline-block" ng-if="connection.data.remoteCallType != 'audio' && !platformSettings.isAndroidClient && connection.data.bandwidthIn > 64 && connection.data.bandwidthOut > 64">
+            <a class="button sel-escalate-media-toolbar button-common" ng-click="$event.stopPropagation(); toggle('popup-escalate')">
+                <i class="mdi-videocam"></i>
+                <span class="toolbar-icon-title" translate>IDS_TOOLBAR_START_VIDEO</span>
+            </a>
+            <div class="escalate-popup" title="" ng-include="'templates/escalate-preview.html'" ng-click="$event.stopPropagation()">
+            </div>
+        </div>
+        <a class="button  sel-escalate-media-toolbar button-common" style="opacity: 1" ng-click="toggle('dialog-escalate')" ng-if="connection.data.remoteCallType != 'audio' && platformSettings.supportsVideo && platformSettings.isAndroidClient && connection.data.bandwidthIn > 64 && connection.data.bandwidthOut > 64">
+            <i class="mdi-videocam"></i>
+            <span class="toolbar-icon-title" translate>IDS_TOOLBAR_START_VIDEO</span>
+        </a>
+        <a  href="" class="button sel-escalate-audio button-common" ng-click="params.audioonly = true; startMediaCall()" ng-if="connection.data.bandwidthIn > 0 && connection.data.bandwidthOut > 0">
+            <i class="mdi-call"></i>
+            <span class="toolbar-icon-title" translate>IDS_TOOLBAR_START_AUDIO_ONLY</span>
+        </a>
+    </span>
+
+    <!--摄像头控制-->
+    <a title="{{'IDS_CAMERACONTROL' | translate}}" href="" class="sel-toggle-cameracontrol button button-common" ng-show="!stateParams.screen" ng-click="toggle('dialog-cameracontrol')" ng-if="connection.data.feccEnabled && connection.remoteVideoStream && connection.data.isGateway && (connection.participants | values | filter: {isConnecting: false}).length <= 2">
+        <i class="mdi-open-with"></i>
+    </a>
+
+    <!--更换相机或麦克风-->
+    <a title="{{'IDS_CHANGE_MEDIA_SOURCES' | translate}}" class="sel-choose-media-toolbar button button-common" ng-click="toggle('dialog-change-media')" ng-if="platformSettings.hasWebRTC && connection.data.bandwidthIn > 0 && connection.data.bandwidthOut > 0 && (connection.remoteAudioStream || connection.remoteVideoStream) && connection.data.renegotiationSupported">
+        <i class="mdi-switch-video"></i>
+    </a>
+
+    <!--在新窗口中打开演示文稿-->
+    <a title="{{'IDS_PRESENTATION_POPOUT' | translate}}" href="" class="button button-common" ng-click="popOutPresentation()" ng-if="call.presentationImgSrc && !call.presentationWindow">
+        <i class="mdi-open-in-new"></i>
+        <span class="toolbar-icon-title" translate>IDS_SHARE_SLIDES</span>
+
+    </a>
+
+    <!--挂断图标-->
+    <a title="{{'IDS_BUTTON_DISCONNECT' | translate }}" href="" class="sel-conference-disconnect red button button-common" ng-click="toolbar.disconnect()">
+        <i class="mdi-call-end" style="color:#ff0000"></i>
+        <span class="toolbar-icon-title" translate>IDS_BUTTON_DISCONNECT</span>
+    </a>
+
+    <div style="float: right;">
+        <!--分享图片时的动态演示和静态演示-->
+        <span ng-if="!call.screenShareMode && call.presentationImgSrc && platformSettings.hasWebRTC && applicationSettings.enableFullMotionPresentation && connection.data.bandwidthIn > 64">
+            <a class="button sel-presentation-full-motion button-common" href="" ng-click="call.startPresentationVideo()" ng-if="!call.presentationVideoSrc">
+                <!-- <i class="mdi-local-movies"></i> -->
+                <i class="mdi-hd"></i>
+                <span class="toolbar-icon-title" translate>IDS_PRESENTATION_FULL_MOTION</span>
+            </a>
+            <a style="color:#0b93f9" class="button sel-presentation-still-image button-common" href="" ng-click="call.stopPresentationVideo()" ng-if="call.presentationVideoSrc">
+                <!-- <i class="mdi-image"></i> -->
+                <i class="mdi-hd"></i>
+                <span class="toolbar-icon-title" translate>IDS_PRESENTATION_STILL_IMAGE</span>
+                <!--<div class="badge-container">-->
+                <!--<div class="badge blue">-->
+                <!--<i class="mdi-play-arrow"></i>-->
+                <!--</div>-->
+                <!--</div>-->
+            </a>
+        </span>
+
+
+        <!--呼叫统计信息-->
+        <a title="{{'IDS_CALL_STATISTICS' | translate}}" href="" class="sel-call-statistics button button-common" ng-click="toggle('dialog-call-statistics')" ng-if="(connection.remoteAudioStream || connection.remoteVideoStream)">
+            <i class="mdi-info"></i>
+            <span class="toolbar-icon-title" translate>IDS_CALL_STATISTICS</span>
+            <!-- <i class="mdi-tune"></i> -->
+        </a>
+        <!--全屏按钮-->
+        <span ng-click="toggleFullScreen()" ng-if="fullScreen !== null && !platformSettings.isAndroidClient && !localStorage.autoFullscreen">
+            <a title="{{'IDS_FULLSCREEN_ACTIVATE' | translate}}" href="" class="sel-fullscreen-activate button button-common" ng-show="!fullScreen">
+                <i class="mdi-fullscreen"></i>
+                <span class="toolbar-icon-title" translate>IDS_FULLSCREEN_ACTIVATE</span>
+            </a>
+            <!--取消全屏-->
+            <a title="{{'IDS_FULLSCREEN_DEACTIVATE' | translate}}" href="" class="sel-fullscreen-deactivate button button-common" ng-show="fullScreen">
+                <i class="toolbar-fullscreen-exit"></i>
+                <span class="toolbar-icon-title meeting-toolbar-common" translate>IDS_FULLSCREEN_DEACTIVATE</span>
+            </a>
+        </span>
+        </div>
+</div>

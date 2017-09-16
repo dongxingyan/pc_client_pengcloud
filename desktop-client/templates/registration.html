@@ -1,0 +1,32 @@
+<form class="overlay-container brand-overlay" ng-submit="globalService.register(localStorage.registrationHost, localStorage.registrationAlias, localStorage.registrationUsername, registrationPassword, update, localStorage.registrationStorePassword);" ng-if="false" >
+    <div class="overlay-content brand-secondary">
+        <div class="dialog-title" translate>IDS_REGISTRATION_FAILED</div>
+        <div class="dialog-content">
+            <div translate translate-values="{errorCode: localStorage.registrationError.status}">
+                IDS_REGISTRATION_FAILED_MESSAGE
+            </div>
+            <div style="margin-top: 16px">
+                <label class="settings-label" translate>IDS_SETTINGS_REGISTRATION_ALIAS</label>
+                <input type="text" ng-model="localStorage.registrationAlias" maxlength="250" />
+                <label class="settings-label" translate>IDS_SETTINGS_REGISTRATION_HOSTNAME</label>
+                <input type="text" ng-model="localStorage.registrationHost" maxlength="250" />
+                <label class="settings-label" translate>IDS_SETTINGS_REGISTRATION_USERNAME</label>
+                <input type="text" ng-model="localStorage.registrationUsername" maxlength="250" />
+                <label class="settings-label" translate>IDS_SETTINGS_REGISTRATION_PASSWORD</label>
+                <input type="password" ng-init="registrationPassword = loadRegPwd()" autofocus ng-model="registrationPassword" maxlength="250" />
+                <label>
+                    <input type="checkbox" ng-model="localStorage.registrationStorePassword" ng-change="saveRegPwd(localStorage.registrationStorePassword ? registrationPassword : '')" />
+                    <span translate>IDS_SETTINGS_REGISTRATION_PASSWORD_REMEMBER</span>
+                </label>
+            </div>
+        </div>
+        <div class="alert-actions">
+            <button autofocus type="button" class="button square" ng-click="globalService.unregister()">
+                <span translate>IDS_BUTTON_CANCEL</span>
+            </button>
+            <button type="submit" class="button square">
+                <span translate>IDS_SETTINGS_REGISTRATION_BUTTON_REGISTER</span>
+            </button>
+        </div>
+    </div>
+</form>

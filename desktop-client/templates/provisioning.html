@@ -1,0 +1,59 @@
+<form class="overlay-container brand-overlay" ng-init="provisionData = localStorage.provisionData" ng-submit="globalService.applyProvisionData(provisionData); localStorage.provisionData = undefined" ng-if="localStorage.provisionData">
+    <div class="overlay-content brand-secondary">
+        <div class="dialog-title" translate>
+            IDS_PROVISION_TITLE
+        </div>
+        <div class="dialog-content">
+            <div translate>
+                IDS_PROVISION_MESSAGE
+            </div>
+
+            <div ng-if="provisionData.name">
+                <div class="settings-header" translate>
+                    IDS_SETTINGS_TITLE_USER
+                </div>
+                <div style="margin-top: 16px">
+                    <div class="padded card brand-tertiary" style="position: relative">
+                        <table style="width: 100%">
+                            <tr>
+                                <td translate>IDS_SETTINGS_DISPLAY_NAME</td>
+                                <td class="settings-label settings-registration-text">{{provisionData.name}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="provisionData.registrationAlias">
+                <div class="settings-header" translate>
+                    IDS_SETTINGS_REGISTRATION
+                </div>
+                <div class="padded card brand-tertiary" style="position: relative">
+                    <table style="width: 100%">
+                        <tr>
+                            <td translate>IDS_SETTINGS_REGISTRATION_ALIAS</td>
+                            <td class="settings-label settings-registration-text">{{provisionData.registrationAlias}}</td>
+                        </tr>
+                        <tr ng-if="provisionData.registrationHost">
+                            <td translate>IDS_SETTINGS_REGISTRATION_HOSTNAME</td>
+                            <td class="settings-label settings-registration-text">{{provisionData.registrationHost}}</td>
+                        </tr>
+                        <tr ng-if="provisionData.registrationUsername">
+                            <td translate>IDS_SETTINGS_REGISTRATION_USERNAME</td>
+                            <td class="settings-label settings-registration-text">{{provisionData.registrationUsername}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="alert-actions">
+            <button autofocus type="button" class="button square" ng-click="localStorage.provisionData = undefined">
+                <span translate>IDS_BUTTON_CANCEL</span>
+            </button>
+            <button type="submit" class="green button square">
+                <span translate>IDS_BUTTON_APPLY</span>
+            </button>
+        </div>
+    </div>
+</form>

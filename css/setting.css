@@ -1,0 +1,22 @@
+.padded .setting_input_name {
+
+     border-radius: 30px;
+     height: 60px;
+     background-color: #f7f8fa;
+     text-align: center;
+ }
+
+.padded .setting_select {
+
+    width: 220px;
+    background-color: #f7f8fa;
+    text-align: center;
+    border-radius: 15px;
+
+}
+
+.setting_line_space {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Pexip",
+  "xwalk_version": "1.0.0",
+  "start_url": "android/index.html",
+  "display": "standalone",
+  "xwalk_permissions": []
+}

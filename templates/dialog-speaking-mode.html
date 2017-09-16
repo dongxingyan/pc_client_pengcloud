@@ -1,0 +1,37 @@
+<div class="overlay-container brand-overlay" id="dialog-speaking-mode" toggle>
+    <form class="overlay-content brand-secondary" name="addParticipantForm" ng-submit="addParticipantForm.$valid || hide()" novalidate>
+        <i style="color:#0b93f9;cursor: pointer;font-size:34px;float: right" class="iconfont" ng-click="hide();drpengExtend.isShowParticipantsSelect = true;drpengExtend.speakerList = drpengExtend.originSpeakerList.concat();">&#xe81a;</i>
+        <div class="speaking-mode-container" style="margin-top: 40px">
+            <div class="speaking-mode-title" translate>IDS_CONFERENCE_MAIN_SCREEN_MODE</div>
+            <div class="speaking-mode-radio-container">
+                <input id="fixed" type="radio" name="speaking-mode" checked class="speaking-mode-fixed-input" ng-click="drpengExtend.settings.showMode = 'polling';drpengExtend.isShowParticipantsSelect = true">
+                <label for="fixed" class="speaking-mode-fixed-title" ng-click="drpengExtend.settings.showMode = 'polling';drpengExtend.isShowParticipantsSelect = true" translate>IDS_FIXED</label>
+                <input id="circle" type="radio" name="speaking-mode" class="speaking-mode-circle-input" ng-click="drpengExtend.settings.showMode = 'fixed';drpengExtend.speakerUUIDMap = [];drpengExtend.isShowParticipantsSelect = false">
+                <label for="circle" class="speaking-mode-circle-title" ng-click="drpengExtend.settings.showMode = 'fixed';drpengExtend.speakerUUIDMap = [];drpengExtend.isShowParticipantsSelect = false" translate>IDS_POLLING</label>
+            </div>
+            <div class="participant-list-container" ng-show="drpengExtend.isShowParticipantsSelect == true">
+                <select name="" id="" class="participant-list-select">
+                    <option ng-if="item.displayName !== 'RTMP流'" ng-repeat="item in drpengExtend.getParticipantsList()" data-uuid="{{item.uuid}}">{{item.displayName}}</option>
+                </select>
+            </div>
+            <div ng-show="drpengExtend.isShowParticipantsSelect == true" class="participants-add-btn" ng-click="drpengExtend.speakerAdd();$event.stopPropagation(); " translate>IDS_PARTICIPANT_CONNECTION_DURATION</div>
+        </div>
+        <div class="speaker-container" ng-show="drpengExtend.isShowParticipantsSelect == true">
+            <div class="speaker-container-title" translate>IDS_MAIN_SCREEN_EXPLICIT</div>
+            <div class="speaker-list-container">
+                <div class="speaker-name-container" ng-repeat="item in drpengExtend.speakerList">
+                    <div class="speaker-container-name">{{item}}</div>
+                    <div class="del-speaker-btn" ng-click="drpengExtend.removeSpeaker(item);$event.stopPropagation();">×</div>
+                </div>
+            </div>
+        </div>
+        <div class="alert-actions actions-custom" style="text-align: center">
+            <button class="button square" style="background-color:#0b93f9;width: 100px;height: 45px;" ng-if="JSON.stringify(drpengExtend.speakerUUIDMap) == '{}'">
+                <span translate>IDS_BUTTON_OK</span>
+            </button>
+            <button class="button square" style="background-color:#0b93f9;width: 100px;height: 45px;" ng-if="JSON.stringify(drpengExtend.speakerUUIDMap) != '{}'" ng-click="drpengExtend.saveSpeakerModeSet();hide();drpengExtend.isShowParticipantsSelect = true;">
+                <span translate>IDS_BUTTON_OK</span>
+            </button>
+        </div>
+    </form>
+</div>

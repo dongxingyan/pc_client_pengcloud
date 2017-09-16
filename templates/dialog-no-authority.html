@@ -1,0 +1,14 @@
+<div class="overlay-container brand-overlay" id="dialog-no-authority" toggle>
+    <form class="overlay-content brand-secondary" novalidate>
+        <div class="no-authority-container">
+            <div class="no-authority-img"></div>
+            <div translate class="no-authority-text" ng-if="drpengExtend.noAuthoTip === 'record'">IDS_NO_RECORD_AUTHORITY</div>
+            <div translate class="no-authority-text" ng-if="drpengExtend.noAuthoTip === 'live'">IDS_NO_LIVE_AUTHORITY</div>
+        </div>
+        <div class="alert-actions">
+            <button type="button" class="button square" ng-click="hide()">
+                <span translate>IDS_BUTTON_CLOSE</span>
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,93 @@
+.speaking-mode-container {
+    display: flex;
+    align-items: center;
+}
+
+.speaking-mode-title {
+    letter-spacing: 1px;
+    width: 92px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.speaking-mode-radio-container {
+    margin-right: 20px;
+}
+
+.speaking-mode-radio-container label {
+    margin-left: 3px;
+    margin-right: 10px;
+    margin-top: 1px;
+    cursor: pointer;
+}
+
+.speaking-mode-radio-container {
+    cursor: pointer;
+}
+
+.speaking-mode-radio-container input {
+    height: 18px;
+    width: 18px;
+}
+
+.speaking-mode-radio-container {
+    display: flex;
+}
+
+.participant-list {
+    margin-right: 35px;
+}
+
+.participant-list-select {
+    width: 162px;
+    padding-left: 10px;
+}
+
+.participants-add-btn {
+    color: #54abd6;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.speaker-container {
+    display: flex;
+}
+
+.speaker-container-title {
+    justify-content: flex-end;
+    display: flex;
+    margin-right: 20px;
+    width: 88px;
+}
+
+.speaker-name-container {
+    display: flex;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.speaker-container-name {
+    margin-top: 5px;
+    margin-left: 11px;
+    margin-bottom: 5px;
+}
+
+.del-speaker-btn {
+    cursor: pointer;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.speaker-list-container {
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+}
+
+.actions-custom {
+    margin-top: 50px;
+}

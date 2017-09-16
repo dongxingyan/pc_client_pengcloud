@@ -1,0 +1,31 @@
+{
+  "name": "release-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "packages": {
+    "linux64": {
+      "url": "http://localhost:8080/releases/nw-autoupdater-demo-linux-x64.zip",
+      "size": 98411707
+    },
+    "mac64": {
+      "url": "http://localhost:8080/releases/nw-autoupdater-demo-osx-x64.zip",
+      "size": 98122673
+    },
+    "win64": {
+      "url": "http://localhost:8080/releases/nw-autoupdater-demo-win-x64.zip",
+      "size": 96915642
+    }
+  },
+  "scripts": {
+    "start": "node server.js",
+    "update": "node update.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "express": "^4.15.2"
+  }
+}

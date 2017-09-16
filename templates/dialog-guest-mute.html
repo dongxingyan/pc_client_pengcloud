@@ -1,0 +1,24 @@
+<div class="overlay-container brand-overlay" id="dialog-guest-mute" toggle initial="false" ng-click="hide()">
+    <div class="overlay-content brand-secondary" ng-click="$event.stopPropagation()">
+        <i style="color:#0b93f9;cursor: pointer;font-size:34px;float: right" class="iconfont" ng-click="hide();">&#xe81a;</i>
+        <div class="dialog-title" style="text-align: center">
+            <span translate>IDS_CONFERENCE_MUTE_GUESTS</span>
+        </div>
+        <div class="dialog-content">
+            <p translate>IDS_CONFERENCE_MUTE_GUESTS_EXPLANATION</p>
+            <!--<ul style="margin-top: 0; margin-bottom: 2em" ng-init="numberOfGuests = 5">-->
+                <!--<li translate>IDS_CONFERENCE_MUTE_GUESTS_LATER</li>-->
+                <!--<li ng-repeat="participant in guestParticipants = (connection.participants | values | filter:{role:'guest'})" ng-if="$index <= numberOfGuests">-->
+                    <!--<span ng-if="$index < numberOfGuests">{{participant.displayName || participant.uri}}</span>-->
+                    <!--<span ng-if="$index == numberOfGuests">{{'IDS_CONFERENCE_MUTE_GUESTS_N_MORE' | translate:{n: guestParticipants.length - numberOfGuests} }}</span>-->
+                <!--</li>-->
+            <!--</ul>-->
+        </div>
+        <div class="alert-actions" style="text-align: center">
+
+            <button type="button" style="background-color: #0b93f9" class="button square" ng-click="call.toggleMuteAllGuests(); hide()">
+                <span translate>IDS_CONFERENCE_MUTE_GUESTS</span>
+            </button>
+        </div>
+    </div>
+</div>

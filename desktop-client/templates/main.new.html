@@ -1,0 +1,118 @@
+<div novalidate class="full-size sel-newMain-dialog app-fullscreen sel-main-dialog" id="main">
+    <div class="sel-main-setting">
+        <a style="padding:0;width: 100px;text-transform: none;" href="" class="transparent button sel-connect-settings sel-newMain-setting"
+           ng-attr-title="{{'IDS_SETTINGS_TITLE' | translate}}" ng-click="toggle('dialog-settings')">
+            <i class="mdi-settings"></i>
+            <i style="font-style: normal" translate>IDS_SETTINGS_TITLE</i>
+        </a>
+    </div>
+    <div class="sel-newMain-logo">
+    </div>
+    <div class="sel-newMain-title">
+    </div>
+    <div class="sel-newMain-enter" translate ng-click="enterHistory(params.conference, localStorage.name)">
+        IDS_ENTER_MEETING
+    </div>
+    <!--登录部分-->
+    <div class="root-bottom" id="rootBottom">
+
+        <div class="sel-newMain-login" ng-click="showBtn()" id="rootShowButton" ng-if="!platformSettings.isWebClient && localStorage.registrationState !=='ACTIVE'&&!drpengExtend.isOnClick" translate >
+            IDS_SETTINGS_REGISTRATION
+        </div>
+        <div class="sel-newMain-login" ng-click="showBtn()" ng-if="!platformSettings.isWebClient && localStorage.registrationState === 'ACTIVE'&&!drpengExtend.isOnClick">
+            {{localStorage.registrationAlias}}
+        </div>
+        <div class="sel-newMain-login" ng-if="drpengExtend.isOnClick" ng-click="showBtn()">
+            <i class="iconfont" style="font-size:30px">&#xe610;</i>
+        </div>
+        <div class="root-bottom-login-content">
+            <div ng-if="!applicationSettings.desktopClientHideRegistrationSettings"
+                 ng-init="showAdvancedRegistration=localStorage.registrationState==='ACTIVE'"
+                 ng-switch="localStorage.registrationState">
+
+                <div class="padded card brand-tertiary newMain-registry" style="position: relative" ng-switch-when="ACTIVE">
+                    <table class="login-aliasName" style="width: 100%">
+                        <tr>
+                            <!--<td translate>IDS_SETTINGS_REGISTRATION_ALIAS</td>-->
+                            <td class="settings-label settings-registration-text" style="text-align: center">
+                                {{localStorage.registrationAlias}}
+                            </td>
+                        </tr>
+                        <!--<tr>-->
+                            <!--<td translate>IDS_SETTINGS_REGISTRATION_HOSTNAME</td>-->
+                            <!--<td class="settings-label settings-registration-text">-->
+                                <!--{{localStorage.registrationHost}}-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td translate>IDS_SETTINGS_REGISTRATION_USERNAME</td>-->
+                            <!--<td class="settings-label settings-registration-text">-->
+                                <!--{{localStorage.registrationUsername}}-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                    </table>
+                    <div style="text-align: center">
+                        <!--<span class="transparent green" style="margin: 16px; display: inline-block;">-->
+                            <!--<i class="mdi-check"></i>-->
+                            <!--<span translate>IDS_REGISTRATION_REGISTERED</span>-->
+                        <!--</span>-->
+                        <button type="button" style="background:#fc474a;width:95%;height:60px"
+                                ng-click="$parent.showAdvancedRegistration=true; globalService.unregister()"
+                                class="button square sel-settings-unregister">
+                            <span translate>IDS_SETTINGS_REGISTRATION_BUTTON_UNREGISTER</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="padded card brand-tertiary" style="text-align: center" ng-switch-when="REGISTERING">
+                    <img src="img/spinner-black.svg" class="spinner">
+                </div>
+
+                <div class="padded card brand-tertiary" style="text-align: center"
+                     ng-switch-when="UNREGISTERING">
+                    <img src="img/spinner-black.svg" class="spinner">
+                </div>
+
+                <div class="padded brand-tertiary" style="position: relative;padding-top: 0" ng-switch-default>
+                    <label class="root-bottom-label" translate>IDS_SETTINGS_REGISTRATION_ALIAS</label>
+                    <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                           type="text" maxlength="250" class="sel-settings-reg-alias root-bottom-input"
+                           placeholder="{{'IDS_SETTINGS_REGISTRATION_ALIAS_PLACEHOLDER' | translate}}"
+                           ng-model="localStorage.registrationAlias"
+                    />
+                    <!--<span ng-if="showAdvancedRegistration">-->
+                        <!--<label class="root-bottom-label" translate>IDS_SETTINGS_REGISTRATION_HOSTNAME</label>-->
+                        <!--<input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"-->
+                               <!--type="text" maxlength="250" class="sel-settings-reg-hostname root-bottom-input"-->
+                               <!--ng-pattern="regexIpHost" ng-model="localStorage.registrationHost"/>-->
+                        <!--<label class="root-bottom-label" translate>IDS_SETTINGS_REGISTRATION_USERNAME</label>-->
+                        <!--<input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"-->
+                               <!--type="text" maxlength="250" class="sel-settings-reg-username root-bottom-input"-->
+                               <!--ng-model="localStorage.registrationUsername"/>-->
+                    <!--</span>-->
+                    <label class="root-bottom-label" translate>IDS_SETTINGS_REGISTRATION_PASSWORD</label>
+                    <input type="password" maxlength="250" class="sel-settings-reg-password root-bottom-input"
+                           placeholder="{{'IDS_SETTINGS_REGISTRATION_PASSWORD_PLACEHOLDER' | translate}}"
+                           ng-init="registrationPassword = loadRegPwd()" ng-model="registrationPassword"/>
+                    <label style="margin-top:10px;margin-left:10px;float: left;color:red" ng-if="localStorage.registrationError&&!globalService.ifNull" translate>IDS_REGISTRATION_FAILED</label>
+                    <label style="margin-top:10px;margin-left:145px;float: left;color:red" ng-if="globalService.ifNull" translate>IDS_ALIAS_EMPTY</label>
+                    <label style="margin-top: 10px;display: block;float: right;">
+                        <input type="checkbox" class="sel-settings-reg-store-password"
+                               ng-model="localStorage.registrationStorePassword"
+                               ng-change="saveRegPwd(localStorage.registrationStorePassword ? registrationPassword : '')"/>
+                        <span translate>IDS_SETTINGS_REGISTRATION_PASSWORD_REMEMBER</span>
+                    </label>
+                    <div>
+                        <button type="button" style="width: 95%; height: 60px; margin-top: 20px; border-radius: 15px;"
+                                ng-click="globalService.register(showAdvancedRegistration ? localStorage.registrationHost : null, localStorage.registrationAlias,  null, registrationPassword, update, localStorage.registrationStorePassword);"
+                                class="blue button square sel-settings-register">
+                            <span translate>IDS_SETTINGS_REGISTRATION_BUTTON_REGISTER</span>
+                            <!--<span>{{ localStorage.registrationAlias}}</span>-->
+                        </button>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

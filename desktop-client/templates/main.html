@@ -1,0 +1,86 @@
+<table id="homePage" cellpadding="0" class="full-size sel-main-dialog" ng-class="{'app-fullscreen': !platformSettings.isWebClient}" toggle>
+    <tr>
+        <td class="brand-primary">
+            <div class="max-width-640">
+                <div style="padding: 16px">
+                    <div class="menu">
+                        <a href="" class="transparent button sel-connect-settings" ng-attr-title="{{'IDS_SETTINGS_TITLE' | translate}}">
+                            <i class="mdi-settings"></i>
+                        </a>
+                    </div>
+                    <div class="avatar">
+                        <img ng-if="localStorage.registrationToken" ng-src="{{'https://' + localStorage.registrationHost + '/api/client/v2/registrations/' + localStorage.registrationAlias + '/avatar.jpg?token=' + localStorage.registrationToken}}" onerror="this.style.display='none'">
+                        <div class="badge-container sel-registration-state" ng-switch="localStorage.registrationState">
+                            <div class="badge green" ng-switch-when="ACTIVE">
+                                <i class="mdi-notifications"></i>
+                            </div>
+                            <div class="badge blue" ng-switch-when="REGISTERING">
+                                <i class="mdi-autorenew"></i>
+                            </div>
+                            <div class="badge blue" ng-switch-when="UNREGISTERING">
+                                <i class="mdi-autorenew"></i>
+                            </div>
+                            <div class="badge red" ng-switch-when="FAILED">
+                                <i class="mdi-notifications-off"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="participant-list-name sel-display-name">
+                        {{localStorage.name}}
+                    </div>
+                    <div class="participant-list-name-detail sel-reg-alias" ng-if="platformSettings.isWebClient">
+                        &nbsp;
+                    </div>
+                    <div class="participant-list-name-detail sel-reg-alias" ng-if="!platformSettings.isWebClient && localStorage.registrationState !== 'ACTIVE'">
+                        <span ng-if="localStorage.autoAnswer" translate>IDS_SETTINGS_REGISTRATION_AUTOANSWER_NOTIFICATION</span>
+                        <span>{{localStorage.registrationAlias}}</span>
+                    </div>
+                    <div class="participant-list-name-detail sel-reg-alias" ng-if="!platformSettings.isWebClient && localStorage.registrationState !== 'ACTIVE'" translate>
+                        IDS_SETTINGS_REGISTRATION_STATUS_NOT_REGISTERED
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="height: 100%">
+            <form novalidate class="brand-tertiary max-width-640 card" style="height: 100%" ng-submit="params.conference && loginApp(params.conference, localStorage.name)">
+                <table cellpadding="0" class="full-size">
+                    <tr>
+                        <td>
+                            <div ng-if="errorMessage && platformSettings.isWebClient" class="red login-error sel-error-message" translate="{{errorMessage}}" translate-values="{alias: localStorage.conference}"></div>
+                            <div class="content-header brand-tertiary">
+                                <div style="float: right; padding-right: 16px;">
+                                    <a class="transparent button sel-clear-alias" onclick="$('#alias-field').focus();" ng-click="params.conference=''" ng-if="params.conference">
+                                        <i class="mdi-clear"></i>
+                                    </a>
+                                    <a class="transparent button" onclick="$('#alias-field').focus();" ng-if="!params.conference">
+                                        <i class="mdi-edit"></i>
+                                    </a>
+                                </div>
+                                <div style="overflow: hidden; height: 100%;" ng-init="params.conference=''">
+                                    <input type="text" id="alias-field" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="512" class="sel-connect-uri-prompt" style="height: 100%; border: none; margin: 0; padding-left: 16px" focus-input ng-attr-placeholder="{{'IDS_CONNECT_URI_PROMPT' | translate}}" ng-change="directory.getDirectory(params.conference)"
+                                        ng-model="params.conference" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <td class="box-header" translate>IDS_HISTORY_RECENT</td>
+                    </tr> -->
+                    <tr>
+                        <td class="brand-secondary" style="height: 100%; max-width: 0px; /* MAX-WIDTH hack to work around long entries overflowing*/">
+                            <div class="content-box" style="overflow: overlay">
+                                <div ng-include="'templates/call-history.html'"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+</table>
+<div id="loadingBox" style="display: none;align-content: center;position: fixed;top:50%;left:50%; width: 100px;height:120px;margin-left:-60px;margin-top:-60px">
+    <img src="../../img/loading.gif" id="homeLoading" style="margin:0 auto;display: inherit">
+    <p style="text-align: center;margin-top:20px;" translate>IDS_UPDATE_ING</p>
+</div>

@@ -1,0 +1,46 @@
+<div class="overlay-container brand-overlay" id="dialog-screen-share-missing-drpeng" toggle>
+    <form class="overlay-content brand-secondary">
+        <div class="dialog-title" translate>IDS_DIALOG_SCREENSHARE_MISSING_TITLE</div>
+        <div class="dialog-content" style="overflow:hidden">
+            <span style="white-space: pre" translate>IDS_DIALOG_SCREENSHARE_MISSING_MESSAGE</span>
+        </div>
+        <div class="alert-actions">
+            <a ng-href="{{'IDS_SCREENSHARE_EXTENSION_URL' | translate}}"
+               target="_blank"
+               type="submit"
+               class="button square" ng-click="hide();"
+               ng-if="drpengExtend.platform().isWindows && drpengExtend.localLanguage.indexOf('en-us.json') !== -1">
+                <span translate>IDS_BUTTON_INSTALL</span>
+            </a>
+            <!--是中文并且在QQ浏览器中打开-->
+            <a ng-href="http://appcenter.browser.qq.com/search/detail?id=iahmobhoeddhkhmejlfnfmkfheifopob%20&title=%E9%B9%8F%E4%BA%91%E8%A7%86%E9%A2%91%E4%BC%9A%E8%AE%AE%E5%B1%8F%E5%B9%95%E5%85%B1%E4%BA%AB%E6%89%A9%E5%B1%95"
+               target="_blank"
+               type="submit"
+               class="button square" ng-click="hide();"
+               ng-if="drpengExtend.localLanguage.indexOf('en-us.json') === -1 && drpengExtend.platform().isWindows && drpengExtend.checkBrowser()">
+                <span translate="">IDS_BUTTON_INSTALL_BROWSER_PLUGIN</span>
+            </a>
+            <!--是中文并且在chrom内核浏览器中打开-->
+            <a ng-href="templates/sharePlugin.html"
+               target="_blank"
+               type="submit"
+               class="button square" ng-click="hide()"
+               ng-if="
+                && drpengExtend.platform().isWindows && drpengExtend.checkCore() && !drpengExtend.checkBrowser()">
+                <span translate>IDS_BUTTON_HELP_ONLINE</span>
+            </a>
+            <!--是中文并且在非chrome内核浏览器中打开-->
+            <a ng-href="templates/plugin.html"
+               target="_blank"
+               type="submit"
+               class="button square" ng-click="hide();"
+               ng-if="drpengExtend.localLanguage.indexOf('en-us.json') === -1 && drpengExtend.platform().isWindows && (!drpengExtend.platform().isChrome) && !drpengExtend.checkCore()">
+                <span translate>IDS_BUTTON_HELP_ONLINE</span>
+            </a>
+            <button type="button" class="button square" ng-click="hide()">
+                <span translate>IDS_BUTTON_CANCEL</span>
+            </button>
+        </div>
+        <div ng-show="drpengExtend.localLanguage.indexOf('en-us.json') === -1" translate class="dialog-remark">IDS_DIALOG_INSTALLATION_REMARK</div>
+    </form>
+</div>

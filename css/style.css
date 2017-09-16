@@ -1,0 +1,411 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 11pt;
+    overflow: hidden;
+    margin: 0;
+}
+
+p {
+    margin: 8px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+    width: 100%;
+    margin: 8px 0;
+    outline: none;
+}
+
+input[type="number"] {
+    font-size: 11pt;
+    margin: 8px 0;
+}
+
+fieldset {
+    margin: 0 0 16px 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+}
+
+fieldset input[type="password"]{
+    height: 40px;
+    width: 100%;
+    border-radius: 20px;
+    border: solid 1px #cccccc;
+    outline: none;
+    text-align: center;
+}
+fieldset legend {
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+    margin-bottom: 10px;
+}
+fieldset table {
+    width: 100%;
+}
+fieldset label {
+    margin-right: 16px;
+    /*white-space: nowrap;*/
+}
+
+.clearfix {
+    clear: both;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9E9E9E;
+  border-radius: 4px;
+}
+
+
+.button {
+    display: inline-block;
+    position: relative;
+    width: 1em;
+    height: 1em;
+    line-height: 0;
+    font-size: 24px;
+    border-radius: 2em;
+    border: none;
+    vertical-align: middle;
+    opacity: .87;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 0.333em;
+}
+.toolbar .sel-toolbar .button-common{
+    width:2rem;
+    height:2rem;
+    box-shadow: none;
+    background:none;
+}
+
+.toolbar-share .toolbar-icon-title,
+.toolbar .sel-toolbar .button-common .toolbar-icon-title{
+    font-size:12px;
+    margin-top:15px;
+    display: inline-block;
+    text-transform: none;
+}
+.button:focus {
+    outline: none;
+}
+
+.button:hover {
+    opacity: 1;
+    /*text-shadow: 0 0 8px white;*/
+}
+
+.button.square {
+    padding: 8px 16px;
+    margin-left: 8px;
+    font: inherit;
+    /*font-weight: bold;*/
+    border-radius: 15px;
+    border: none;
+    width: auto;
+    height: auto;
+}
+
+.button.transparent {
+    background-color: transparent;
+    color: inherit;
+    box-shadow: none !important;
+    /*border-width: 1px;
+    border-style: solid;*/
+}
+
+.button-like {
+    display: inline-block;
+    position: relative;
+}
+
+.name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0 16px;
+    /*line-height: 40px;*/
+}
+
+.participant-list-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    /*margin: 0 16px;*/
+    display: inline-block;
+    line-height: 40px;
+    max-width: 180px;
+    /*font-size: 30px;*/
+    /*font-family: "Helvetica";*/
+    color: #fff;
+    text-align: left;
+    padding-left:15px;
+
+}
+.side-bar-list-item .sel-participant-name-common{
+    width:180px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Helvetica";
+    line-height: 80px;
+     color: rgb(90, 90, 90);
+
+}
+.side-bar-list-item .sel-participant-name{
+    max-width: 100px;
+}
+
+
+.side-bar-list-item .menu .participant-lock-icon{
+    padding:5px;
+    background:none;
+    width:3.5rem;
+}
+.side-bar-list-item .menu .participant-lock-icon .participant-lock-common{
+    display: inline-block;
+    line-height: 1;
+    padding:7px 14px;
+    border-radius: 5px;
+    font-size:12px;
+    font-style: normal;
+    color:#fff;
+}
+.sel-participant-button-common{
+    background:#82d085;
+    border-radius: 50%;
+    font-size:17px;
+    padding:5px;
+    line-height:1.5
+}
+.sel-participant-button-common1{
+    background: #fa5f61;
+    border-radius: 50%;
+    font-size:17px;
+    padding:5px;
+    line-height:1.5
+}
+.participant-list-name-detail {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    /*margin: 0 16px;*/
+    line-height:40px;
+    margin-left:20px;
+    font-size: smaller;
+    opacity: .5;
+    display: inline-block;
+    /*color:#008aea;*/
+}
+.side-bar-list-item .sel-participant-detail-common{
+    line-height: 80px;
+}
+.avatar, .participant-info-avatar {
+    display: inline-block;
+    border-radius: 50%;
+    background-image: url(../img/avatar.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    line-height: 41px;
+    font-size: 24px;
+    margin-right: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    float: left;
+}
+.participant-info-avatar {
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+}
+
+.participant-info-identity{
+    border-radius: 5px;
+    padding:1px 2px ;
+    color: white;
+    background: -moz-linear-gradient(top, #fff273 0%, #ffa124 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff273), color-stop(100%,#ffa124));
+    background: -webkit-linear-gradient(top, #fff273 0%,#ffa124 100%);
+    background: -o-linear-gradient(top, #fff273 0%,#ffa124 100%);
+    background: -ms-linear-gradient(top, #fff273 0%,#ffa124 100%);
+    background: linear-gradient(to bottom, #fff273 0%,#ffa124 100%);
+}
+
+.calendar-avatar {
+    position: relative;
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 41px;
+    font-size: 24px;
+    border-radius: 50%;
+    margin-right: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    float: left;
+}
+
+.avatar img,
+.avatar svg {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    border-radius: 50%;
+}
+ .button .state,
+ .avatar .state {
+     position: absolute;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     opacity: .7;
+     border-radius: 50%;
+}
+
+.badge-container {
+    position: absolute;
+    right: -4px;
+    bottom: -4px;
+    font-weight: bolder;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 10px;
+    line-height: 10px;
+    overflow: hidden;
+}
+
+.badge {
+    display: inline-block;
+    height: 10px;
+    padding: 3px;
+    border-radius: 8px;
+    box-shadow: inherit;
+    background-color: inherit;
+}
+.call-icon{
+    height:80px;
+    line-height:80px;
+    padding:0;
+    margin-right:30px;
+}
+
+.call-icon .call-out,.call-icon .call-in{
+    color:#02d21c;
+    font-size:30px;
+}
+.call-icon .call-miss{
+    color:#d20202;
+    font-size:30px
+}
+.menu {
+    float: right;
+    text-align: right;
+    /*margin-left: 16px;*/
+}
+
+.menu .button {
+    display: inline-block;
+}
+
+.placeholder-text {
+    opacity: .5;
+    text-align: center;
+}
+.placeholder-text a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.main-pip .virtual-stage {
+    white-space: normal;
+    width: 100%;
+    height: auto;
+}
+
+.virtual-pip {
+    display: inline-block;
+    margin: 8px;
+    background-color: #111;
+    text-align: center;
+    transition:all linear 0.2s;
+}
+
+/*.virtual-pip.ng-move,
+.virtual-pip.ng-enter,
+.virtual-pip.ng-leave {
+  transform: scaleX(1);
+}*/
+
+.virtual-pip.ng-leave.ng-leave-active,
+.virtual-pip.ng-move.ng-move-active,
+.virtual-pip.ng-enter
+{
+  transform: scaleX(0);
+}
+
+.virtual-pip.ng-leave,
+.virtual-pip.ng-move,
+.virtual-pip.ng-enter.ng-enter-active {
+  transform: scaleX(1);
+}
+
+.virtual-pip img {
+    width: 140px;
+    height: 140px;
+    display: inline-block;
+    margin: 10px;
+}
+
+.virtual-pip-name {
+    width: 160px;
+    text-align: left;
+    overflow: hidden;
+    padding: 8px;
+    background-color: #212121;
+}
+.virtual-pip-name div {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.disabled {
+    pointer-events: none;
+    cursor: not-allowed !important;
+}

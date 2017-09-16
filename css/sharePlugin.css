@@ -1,0 +1,99 @@
+.pd50{
+    padding-left:50px;
+}
+.mt11{
+    margin-top:11px;
+}
+.content{
+    width: 100%;
+    margin-top:10px;
+    font-family: "Microsoft YaHei";
+
+}
+.common{
+    width: 830px;
+    background: #fff;
+}
+
+.ft20{
+    height: 44px;
+    line-height: 44px;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(20, 27, 49);
+}
+.ft13{
+    font-size: 13px;
+    font-family: "Microsoft YaHei";
+    color: rgb(43, 49, 70);
+}
+.title{
+    width: 830px;
+    height: 90px;
+}
+.method{
+    height: 35px;
+    line-height: 35px;
+}
+.step1{
+    height: 120px;
+
+}
+.crxDownload{
+    display: block;
+    text-decoration: none;
+    width: 132px;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    border-radius: 10px;
+    background: #23aae2;
+    margin:0 auto;
+    color: #fff;
+}
+.step2{
+    height: 565px;
+}
+.extend {
+    background: url("../img/extend.png") no-repeat;
+    /*position: absolute;*/
+    width: 606px;
+    height: 503px;
+    margin:0 auto;
+}
+.step3{
+    height: 350px;
+
+}
+.drag{
+    background: url("../img/drag.png") no-repeat;
+    width: 611px;
+    height: 268px;
+    margin:0 auto;
+}
+.step4{
+    height: 410px;
+
+}
+.add{
+    background: url("../img/add.png") no-repeat;
+    width: 611px;
+    height: 339px;
+    margin:0 auto;
+}
+
+.bottom {
+    margin-top: 10px;
+    height: 130px;
+    text-align: center;
+    color: rgb(119, 120, 124);
+    background: #ebebeb;
+
+}
+
+.slogan {
+    font-size: 20px;
+    height: 56px;
+    line-height: 56px;
+
+}

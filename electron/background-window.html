@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="../">
+
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/bindonce.js"></script>
+    <script src="js/vendor/angular-translate.min.js"></script>
+    <script src="js/vendor/angular-translate-loader-static-files.min.js"></script>
+    <script src="js/vendor/ngStorage.min.js"></script>
+    <script src="js/vendor/angular-sanitize.min.js"></script>
+    <script src="js/vendor/angular-enhance-text.min.js"></script>
+
+    <script src="js/pexapp.js"></script>
+    <script src="configuration/settings.js" charset="utf-8"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/call-history-service.js"></script>
+
+
+    <!-- <script src="desktop-client/js/crashdump.js"></script> -->
+    <script src="desktop-client/js/registration.js"></script>
+    <script src="desktop-client/js/img-service.js"></script>
+    <script src="electron/tray-browser.js"></script>
+    <!-- <script src="desktop-client/js/main-window.js"></script> -->
+    <!-- <script src="desktop-client/js/conference-window.js"></script> -->
+    <!-- <script src="desktop-client/js/main.js"></script> -->
+
+    <script>
+        var remote = require('electron').remote;
+
+        angular.module('pexapp')
+
+        .factory('conferenceWindowService', function() {})
+
+        .factory('globalService', function() {
+            if ('electron' in process.versions) {
+                return require('electron').remote.getGlobal('globalService');
+            } else {
+                return global.globalService;
+            }
+        })
+
+        .run(function($rootScope, $log) {
+            // Incoming Calls Window
+            var incomingCallsWindow = remote.require('./incoming-call-window.js');
+
+            $rootScope.$on('pex::onIncomingCall', function(event, message) {
+                $log.log('pex::onIncomingCall');
+                incomingCallsWindow.open(message);
+            });
+
+            $rootScope.$on('pex::callAccept', function(event, message) {
+                incomingCallsWindow.close(message);
+            });
+
+            $rootScope.$on('pex::callReject', function(event, message) {
+                incomingCallsWindow.close(message);
+            });
+        })
+
+        .run(function($rootScope, $log) {
+            // Conference Window
+            var conferenceWindow = remote.require('./conference-window.js');
+
+            $rootScope.$on('pex::callAccept', function(event, message) {
+                conferenceWindow.open(
+                    message.host,
+                    message.conference_alias,
+                    undefined,
+                    message.token,
+                    message.remote_alias,
+                    true,
+                    false,
+                    false);
+            });
+        })
+
+        .run(function($rootScope, $localStorage, registrationService) {
+            var ipcRenderer = require('electron').ipcRenderer;
+
+            ipcRenderer.on('register', function(event, host, uri, userName, password, callback, storePassword) {
+                console.log('backgroundWindow.on register', host, uri, userName, password, callback, storePassword);
+                if (uri) {
+                    var uriComponents = uri.split('@');
+                    if (!userName) {
+                        userName = $localStorage.registrationUsername = uriComponents[0];
+                    }
+                    if (!host && uriComponents[1]) {
+                        host = $localStorage.registrationHost = uriComponents[1];
+                    }
+                }
+                return registrationService.register.call(this, host, uri, userName, password, callback, storePassword);
+            });
+
+            ipcRenderer.on('unregister', function(event, args) {
+                console.log('backgroundWindow.on unregister', args);
+                return registrationService.unregister.apply(this, args);
+            });
+
+            ipcRenderer.on('callAccept', function(event, message) {
+                console.log('backgroundWindow.on callAccept', message);
+                $rootScope.$emit('pex::callAccept', message);
+            });
+            ipcRenderer.on('callReject', function(event, message) {
+                console.log('backgroundWindow.on callReject', message);
+                $rootScope.$emit('pex::callReject', message);
+            });
+        });
+    </script>
+</head>
+
+<body ng-app="pexapp">
+</body>
+
+</html>

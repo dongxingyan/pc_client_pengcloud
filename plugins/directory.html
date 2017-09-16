@@ -1,0 +1,16 @@
+<script>
+    var handleWindowMessage = function(e) {
+        if (e.data) {
+            if (e.data.messageType === 'seeviaSelectNumber') {
+                console.log("GOT MESSAGE", e.data);
+                // var scope = angular.element(document.getElementByTagNames('video')[0]).scope()
+                // scope.addParticipant(e.data.number, e.data.protocol);
+            }
+            // if (e.data.messageType == 'seeviaCloseDialog') {
+            //     window.seevia.closeDialog();
+            // }
+        }
+    };
+    window.addEventListener('message', handleWindowMessage);
+</script>
+<iframe src="https://webapp.seevia.me/?searchToken=art&client=pexip&skin=pexip&keyboardnav=true&protocols=sip,h323,lync" style="width:470px; height:600px;border:none; inset:none;"></iframe>

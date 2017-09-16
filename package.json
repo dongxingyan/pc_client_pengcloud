@@ -1,0 +1,22 @@
+{
+	"name": "PengCloud",
+	"author": "Dr Peng",
+	"main": "desktop-client/main.html",
+	"version": "2.0.1",
+	"window": {
+		"show": false,
+		"icon": "configuration/favicon.png"
+	},
+	"user-agent": "%name/2.6.0-35658.0.0 (%osinfo) nwjs/%nwver Chrome/57.0.2987.110",
+	"chromium-args": "--no-first-run --ignore-certificate-errors --allow-file-access-from-files",
+	"dependencies": {
+		"native-dns": "^0.7.0",
+		"nw-autoupdater": "^1.1.1",
+		"winston": "^2.2.0"
+	},
+	"manifestUrl": "https://cloudp.cc/app/version/new/package.json",
+	"language": "en",
+	"devDependencies": {
+		"iconv-lite": "^0.4.19"
+	}
+}
